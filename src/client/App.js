@@ -1,23 +1,63 @@
-import React, { Component } from 'react';
+import React from 'react';
+import 'bootstrap/dist/css/bootstrap.min.css';
+import { BrowserRouter as Router, Route, Switch, } from 'react-router-dom';
+import Home from './pages/home';
+import Users from './pages/users';
+import Nav from './components/nav';
+import Woodworking from './pages/woodworking';
 import './app.css';
-import ReactImage from './react.png';
 
-export default class App extends Component {
-  state = { username: null };
+const Error = () => <h1>Error</h1>;
 
-  componentDidMount() {
-    fetch('/api/getUsername')
-      .then(res => res.json())
-      .then(user => this.setState({ username: user.username }));
+export default class App extends React.Component {
+  state = {
+    pageName: 'Home'
+  };
+
+  updatePageTitle = (page) => {
+    this.setState({ pageName: page });
   }
 
   render() {
-    const { username } = this.state;
+    const { pageName } = this.state;
     return (
       <div>
-        {username ? <h1>{`Hello ${username}`}</h1> : <h1>Loading.. please wait!</h1>}
-        <img src={ReactImage} alt="react" />
+        <div style={{
+          backgroundColor: '#17a2b8',
+          padding: '40px',
+        }}
+        >
+          <span className="titleBanner">{pageName}</span>
+
+        </div>
+        <Nav />
+        <Router>
+          {/* A <Switch> looks through its children <Route>s and
+            renders the first one that matches the current URL. */}
+          <Switch>
+            <Route path="/about">
+              <About />
+            </Route>
+            <Route path="/users">
+              <Users updatePageTitle={this.updatePageTitle} />
+            </Route>
+            <Route path={['pepper', 'peppers-corner']}>
+              <Users />
+            </Route>
+            <Route path="/woodworking">
+              <Woodworking updatePageTitle={this.updatePageTitle} />
+            </Route>
+            <Route exact path={['/', '/home']}>
+              <Home />
+            </Route>
+            <Route component={Error} />
+          </Switch>
+        </Router>
       </div>
     );
   }
+}
+
+function About() {
+  return <h2>About</h2>;
 }

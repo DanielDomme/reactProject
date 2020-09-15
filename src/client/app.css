@@ -6,3 +6,33 @@ body {
   text-align: center;
   margin: auto;
 }
+
+.postButton {
+  background-color: #17a2b8;
+  padding: 20px;
+  height: 8vmax;
+  width: 8vmax;
+  border-radius: 50%;
+  border: none;
+  box-shadow: 0 5px 9px 0 lightgrey, 0 7px 22px 0 lightgrey;
+  position: fixed;
+  bottom: 45px;
+  right: 45px;
+  font: bold 80% Roboto, sans-serif;
+  text-align: center;
+  font-size: 1.75vw;
+  color: aliceblue;
+}
+
+button:hover {
+  background-color: orange;
+}
+
+.woodWorkingPostCards {
+  padding: 20px;
+}
+
+.titleBanner {
+  font: bold 100% Roboto, sans-serif;
+  font-size: 50px;
+}
