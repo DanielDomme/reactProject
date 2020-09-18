@@ -1,6 +1,7 @@
 import React from 'react';
 import { Modal, Button } from 'react-bootstrap';
 import { bool, func } from 'prop-types';
+import WoodworkingForm from './forms';
 
 const WoodworkingPostModal = ({ isModalShowing, toggleModalVisibility }) => (
   <Modal show={isModalShowing} onHide={toggleModalVisibility}>
@@ -12,6 +13,7 @@ const WoodworkingPostModal = ({ isModalShowing, toggleModalVisibility }) => (
     <Modal.Body>
       <h1>
         This is the body for stuff!
+        <WoodworkingForm />
       </h1>
     </Modal.Body>
     <Modal.Footer>

@@ -14,4 +14,12 @@ PostButton.propTypes = {
   toggleModalVisibility: func.isRequired
 };
 
-export default PostButton;
+const CloseButton = ({ closeButtonHandler }) => (
+  <button type="button" className="closeButton" onClick={closeButtonHandler} />
+);
+
+CloseButton.propTypes = {
+  closeButtonHandler: func.isRequired
+};
+
+export { PostButton, CloseButton };

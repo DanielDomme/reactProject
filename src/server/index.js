@@ -9,8 +9,9 @@ app.use(bodyParser.json());
 const api = require('./api');
 
 app.use(express.static('dist'));
-app.use('/api/getUsername', (req, res) => res.send({ username: 'Daniel' }));
-app.use('/', api);
+app.use('/api/getUsername', (req, res) => res.send({ username: 'Randy' }));
+app.use('/api/daniel', (req, res) => res.status(201).send({ user: 'Daniel' }));
+app.use('/api/', api);
 
 app.use('*', (err, req, res, next) => {
   console.error(err);

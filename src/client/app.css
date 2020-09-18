@@ -36,3 +36,14 @@ button:hover {
   font: bold 100% Roboto, sans-serif;
   font-size: 50px;
 }
+
+.deleteButton {
+  height: 3vmin;
+}
+
+.noBorder {
+  border: none;
+  margin: 0;
+  padding: 0;
+  float: right;
+}

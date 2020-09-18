@@ -11,10 +11,11 @@ export default class Users extends Component {
     try {
       const { props } = this;
       props.updatePageTitle('Users');
-      const res = await fetch('/api/getUsername');
+      const res = await fetch('/api/users');
+      console.log(res);
       console.log(`Body: ${res.status}`);
       const body = await res.json();
-      console.log(body);
+      console.log(`We are trying: ${body.todd}`);
     } catch (error) {
       console.log(`Error: ${error}`);
     }

@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { func } from 'prop-types';
 import { Container } from 'react-bootstrap';
 import Gallery from '../components/gallery';
-import PostButton from '../components/buttons';
+import { PostButton } from '../components/buttons';
 import WoodworkingPostModal from '../components/modals';
 import '../app.css';
 
@@ -31,7 +31,11 @@ export default class Woodworking extends Component {
   render() {
     const { imageNames, isModalShowing } = this.state;
     // TODO: break out to gallery, then move gallery contents to cards
-    const imageCardArray = imageNames.map((item, i) => (<div key={i.toString()} className="d-lg-inline-block woodWorkingPostCards"><Gallery title={i.toString()} imageLocation={`../../../public/images/${item}`} /></div>));
+    const imageCardArray = imageNames.map((item, i) => (
+      <div key={i.toString()} className="d-lg-inline-block woodWorkingPostCards">
+        <Gallery title={i.toString()} imageLocation={`../../../public/images/${item}`} />
+      </div>
+    ));
     return (
       <Container>
         <div>Woodworking</div>
