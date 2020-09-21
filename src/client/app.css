@@ -47,3 +47,7 @@ button:hover {
   padding: 0;
   float: right;
 }
+
+.modalBodyText {
+  text-align: left;
+}

@@ -6,11 +6,13 @@ import '../app.css';
 
 const Gallery = ({ title, imageLocation, body }) => (
   <Card style={{ width: '18rem' }}>
-    <Card.Body>
+    <Card.Header>
       <Card.Title>{title}</Card.Title>
+    </Card.Header>
+    <Card.Img src={imageLocation} />
+    <Card.Body>
       <Card.Text>{body}</Card.Text>
     </Card.Body>
-    <Card.Img src={imageLocation} />
     <Card.Footer>
       <Button variant="outline-dark" className="noBorder">
         <img className="deleteButton" src={trashCan} alt="Delete Button" />
