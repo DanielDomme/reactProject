@@ -51,9 +51,16 @@ export default class Woodworking extends Component {
   }
 
   handleModalPost = (postInfo) => {
-    // this.setState(prevState => ({
-    //   userImages: prevState.userImages.push(postInfo)
-    // }));
+    const newPost = {
+      imageName: postInfo.imageName,
+      bodyContent: postInfo.bodyContent
+    };
+    console.log(`Post Info HErE bodyContent: ${postInfo.bodyContent} imageName: ${postInfo.imageName} ${this.state.userImages.length}`);
+    this.setState(prevState => ({
+      userImages: [...prevState.userImages, newPost]
+    }));
+    // TODO: left off here clean up. refactor modal form to forms
+    console.log(this.state.userImages.length);
     this.toggleModal();
   }
 

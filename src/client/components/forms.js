@@ -16,10 +16,10 @@ const WoodworkingForm = ({ handleUserImageNameInput, handleUserBodyInput }) => (
     <Form.File id="addImageButton" />
   </Form>
 );
-// WoodworkingForm.defaultProps = {
-//   handleUserBodyInput: () => {},
-//   handleUserImageNameInput: () => {}
-// };
+WoodworkingForm.defaultProps = {
+  handleUserBodyInput: () => {},
+  handleUserImageNameInput: () => {}
+};
 WoodworkingForm.protoTypes = {
   handleUserImageNameInput: func.isRequired,
   handleUserBodyInput: func.isRequired
