@@ -7,32 +7,44 @@ export default class WoodworkingPostModal extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      imageName: '',
+      postTitle: '',
+      imageLocation: '',
       bodyContent: ''
     };
-    this.handleImageNameInput = this.handleImageNameInput.bind(this);
   }
 
-  handleImageNameInput = (event) => {
-    this.setState({ imageName: event.target.value });
+  handlePostTitleInput = (event) => {
+    this.setState({ postTitle: event.target.value });
+  }
+
+  // TODO: Multer and Save to File System or other DB(MONGO)
+  // TODO: Refactor Submit/Cancel Buttons and Zeroize Form Fields, Handle Empty Fields
+  handleLocationNameInput = (event) => {
+    console.log(`file ${event.target.files[0]}`);
+    const fileReader = new FileReader();
+    fileReader.readAsDataURL(event.target.files[0]);
+    fileReader.onerror = () => {
+      console.log(fileReader.error);
+    };
+    fileReader.onload = () => {
+      this.setState({ imageLocation: fileReader.result });
+    };
   }
 
   handleBodyContentInput = (event) => {
-    console.log(event.target.value);
     this.setState({ bodyContent: event.target.value });
   }
 
   handleSubmit = (bodyContent) => {
-    console.log(`help ${bodyContent}`);
     this.prop.handleModalSubmit(bodyContent);
   }
 
   render() {
     const { isModalShowing } = this.props;
     const { handleModalCancel, handleModalSubmit } = this.props;
-    const {
-      handleImageNameInput, handleBodyContentInput, handleSubmit, bodyContent, imageName
-    } = this.state;
+    // const {
+    //   postTitle, bodyContent, imageLocation
+    // } = this.state;
     return (
       <Modal show={isModalShowing} onHide={handleModalCancel}>
         <Modal.Header closeButton>
@@ -48,14 +60,14 @@ export default class WoodworkingPostModal extends React.Component {
           <Form>
             <Form.Group controlId="formPostTitle">
               <Form.Label>Post Title</Form.Label>
-              <Form.Control placeholder="Post Title" />
+              <Form.Control placeholder="Post Title" required onChange={event => this.handlePostTitleInput(event)} />
             </Form.Group>
             <Form.Group>
               <Form.Label>Post Body Information</Form.Label>
-              <Form.Control as="textarea" onChange={event => this.handleBodyContentInput(event)} />
+              <Form.Control as="textarea" required onChange={event => this.handleBodyContentInput(event)} />
             </Form.Group>
             <Form.Label>Upload Images</Form.Label>
-            <Form.File id="addImageButton" />
+            <Form.File.Input id="addImageButton" onChange={event => this.handleLocationNameInput(event)} />
           </Form>
         </Modal.Body>
         <Modal.Footer>

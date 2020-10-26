@@ -11,16 +11,19 @@ export default class Woodworking extends Component {
     super(props);
     this.state = {
       userImages: [{
-        imageName: 'Screenshot(1).png',
+        postTitle: 'Cool Stuff',
+        imageLocation: '../../../public/images/Screenshot(1).png',
         bodyContent:
         'Look at this'
       },
       {
-        imageName: 'Screenshot(2).png',
+        postTitle: 'More Cool Stuff',
+        imageLocation: '../../../public/images/Screenshot(2).png',
         bodyContent: 'This one is so coo!'
       },
       {
-        imageName: 'Screenshot(3).png',
+        postTitle: 'Crazy Cool Stuff',
+        imageLocation: '../../../public/images/Screenshot(3).png',
         bodyContent: 'Sed ut perspiciatis unde omnis iste '
           + 'natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa '
           + 'quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. '
@@ -33,7 +36,8 @@ export default class Woodworking extends Component {
           + 'velit esse quam nihil molestiae consequatur, vel illum qui dolorem eum fugiat quo voluptas nulla pariatur?'
       },
       {
-        imageName: 'Screenshot(4).png',
+        postTitle: 'I\'m Confused',
+        imageLocation: '../../../public/images/Screenshot(4).png',
         bodyContent: 'orem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut '
       + 'labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco '
       + 'laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in '
@@ -51,11 +55,13 @@ export default class Woodworking extends Component {
   }
 
   handleModalPost = (postInfo) => {
+    console.log('HERE\n');
     const newPost = {
-      imageName: postInfo.imageName,
+      postTitle: postInfo.postTitle,
+      imageLocation: postInfo.imageLocation,
       bodyContent: postInfo.bodyContent
     };
-    console.log(`Post Info HErE bodyContent: ${postInfo.bodyContent} imageName: ${postInfo.imageName} ${this.state.userImages.length}`);
+    console.log(`Post Info HErE bodyContent: ${postInfo.bodyContent} imageName: ${postInfo.imageLocation} ${this.state.userImages.length}`);
     this.setState(prevState => ({
       userImages: [...prevState.userImages, newPost]
     }));
@@ -81,7 +87,11 @@ export default class Woodworking extends Component {
     // TODO: break out to gallery, then move gallery contents to cards
     const imageCardArray = userImages.map((item, i) => (
       <div key={i.toString()} className="d-lg-inline-block woodWorkingPostCards">
-        <Gallery title={i.toString()} imageLocation={`../../../public/images/${item.imageName}`} body={item.bodyContent} />
+        <Gallery
+          title={item.postTitle}
+          imageLocation={item.imageLocation}
+          body={item.bodyContent}
+        />
       </div>
     ));
     return (
