@@ -51,3 +51,47 @@ button:hover {
 .modalBodyText {
   text-align: left;
 }
+
+.cardScroll {
+  margin: 5px;
+  height: 250px;
+  overflow-y: scroll;
+  scrollbar-width: thin;
+}
+.cardScroll::-webkit-scrollbar {
+  width: 0;
+}
+
+.imageCardsLarge {
+  max-width: 30%;
+  margin: 25px;
+  /*text-shadow:*/
+  /*        -1px -1px 0 #000000,*/
+  /*        1px -1px 0 #000000,*/
+  /*        -1px 1px 0 #000000,*/
+  /*        1px 1px 0 #000000,*/
+  /*        -2px 0 0 #000000,*/
+  /*        2px 0 0 #000000,*/
+  /*        0 2px 0 #000000,*/
+  /*        0 -2px 0 #000000;*/
+}
+
+.imageCardsSmall {
+  max-width: 5%;
+  margin: 25px;
+}
+
+.navCardImages {
+  opacity: 45%;
+}
+
+.buttonize {
+  cursor: pointer;
+  box-shadow: 0 5px 9px 0 lightgrey, 0 7px 22px 0 lightgrey;
+}
+
+.buttonize:hover {
+  /*border-color: orange;*/
+  /*border-width: 1px;*/
+  box-shadow: 0 5px 9px 0 lightgrey, 0 7px 22px 0 orange;
+}

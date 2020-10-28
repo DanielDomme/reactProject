@@ -11,7 +11,7 @@ const ProjectNavBar = () => (
       <Nav className="mr-auto">
         <Nav.Link href="/home">Home</Nav.Link>
         <Nav.Link href="/woodworking">Woodworking</Nav.Link>
-        <Nav.Link href="#link">Pepper</Nav.Link>
+        <Nav.Link href="/pepper">Pepper</Nav.Link>
         <Nav.Link href="/users">Users</Nav.Link>
         <NavDropdown title="Dropdown" id="basic-nav-dropdown">
           <NavDropdown.Item href="#action/3.1">Action</NavDropdown.Item>

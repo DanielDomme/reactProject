@@ -6,6 +6,7 @@ import Users from './pages/users';
 import Nav from './components/nav';
 import Woodworking from './pages/woodworking';
 import './app.css';
+import Pepper from './pages/pepper';
 
 const Error = () => <h1>Error</h1>;
 
@@ -41,8 +42,8 @@ export default class App extends React.Component {
             <Route path="/users">
               <Users updatePageTitle={this.updatePageTitle} />
             </Route>
-            <Route path={['pepper', 'peppers-corner']}>
-              <Users />
+            <Route path={['/pepper', '/peppers-corner']}>
+              <Pepper updatePageTitle={this.updatePageTitle} />
             </Route>
             <Route path="/woodworking">
               <Woodworking updatePageTitle={this.updatePageTitle} />

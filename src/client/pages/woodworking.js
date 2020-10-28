@@ -3,7 +3,7 @@ import { func } from 'prop-types';
 import { Container } from 'react-bootstrap';
 import Gallery from '../components/gallery';
 import { PostButton } from '../components/buttons';
-import WoodworkingPostModal from '../components/modals';
+import WoodworkingPostModal from '../components/woodworkingModal';
 import '../app.css';
 
 export default class Woodworking extends Component {
@@ -61,12 +61,10 @@ export default class Woodworking extends Component {
       imageLocation: postInfo.imageLocation,
       bodyContent: postInfo.bodyContent
     };
-    console.log(`Post Info HErE bodyContent: ${postInfo.bodyContent} imageName: ${postInfo.imageLocation} ${this.state.userImages.length}`);
     this.setState(prevState => ({
       userImages: [...prevState.userImages, newPost]
     }));
     // TODO: left off here clean up. refactor modal form to forms
-    console.log(this.state.userImages.length);
     this.toggleModal();
   }
 
@@ -96,7 +94,7 @@ export default class Woodworking extends Component {
     ));
     return (
       <Container>
-        <div>Woodworking</div>
+        <div><h1>Woodworking Projects</h1></div>
         <WoodworkingPostModal
           isModalShowing={isModalShowing}
           handleModalCancel={this.handleModalClose}
