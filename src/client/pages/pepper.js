@@ -1,6 +1,9 @@
 import React, { Component } from 'react';
 import { func } from 'prop-types';
 import pepperGallery from '../../resources/pepperCardImage.png';
+import pepperMedical from '../../resources/medicalPepper.png';
+import pepperAwards from '../../resources/awardsPepper.png';
+import pepperStats from '../../resources/busyPepper.png';
 import { ImageCardButton } from '../components/buttons';
 
 export default class Pepper extends Component {
@@ -49,11 +52,11 @@ export default class Pepper extends Component {
         <div className="flex-container">
           <div className="flex-row d-flex justify-content-center">
             <ImageCardButton buttonClickHandler={this.onGalleryClick} size={shouldButtonsBeLarge} buttonText={'Pepper\'s Gallery'} cardImage={pepperGallery} />
-            <ImageCardButton buttonClickHandler={this.onMedicalClick} size={shouldButtonsBeLarge} buttonText={'Pepper\'s Medical'} cardImage={pepperGallery} />
-          {/*</div>*/}
-          {/*<div className="flex-row d-flex justify-content-center">*/}
-            <ImageCardButton buttonClickHandler={this.onAwardsClick} size={shouldButtonsBeLarge} buttonText={'Pepper\'s Awards'} cardImage={pepperGallery} />
-            <ImageCardButton buttonClickHandler={this.onStatsClick} size={shouldButtonsBeLarge} cardImage={pepperGallery} buttonText={'Pepper\'s Stats'} />
+            <ImageCardButton buttonClickHandler={this.onMedicalClick} size={shouldButtonsBeLarge} buttonText={'Pepper\'s Medical'} cardImage={pepperMedical} />
+            {/* </div> */}
+            {/* <div className="flex-row d-flex justify-content-center"> */}
+            <ImageCardButton buttonClickHandler={this.onAwardsClick} size={shouldButtonsBeLarge} buttonText={'Pepper\'s Awards'} cardImage={pepperAwards} />
+            <ImageCardButton buttonClickHandler={this.onStatsClick} size={shouldButtonsBeLarge} cardImage={pepperStats} buttonText={'Pepper\'s Stats'} />
           </div>
         </div>
       </div>
