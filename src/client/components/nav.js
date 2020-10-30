@@ -2,9 +2,10 @@ import React from 'react';
 import {
   Button, Form, FormControl, Nav, Navbar, NavDropdown
 } from 'react-bootstrap';
+import '../app.css';
 
 const ProjectNavBar = () => (
-  <Navbar bg="light" expand="lg">
+  <Navbar className="navBar" bg="light" expand="lg">
     <Navbar.Brand href="/home">Home</Navbar.Brand>
     <Navbar.Toggle aria-controls="basic-navbar-nav" />
     <Navbar.Collapse id="basic-navbar-nav">
@@ -23,8 +24,8 @@ const ProjectNavBar = () => (
         <Nav.Link href="#login">Login</Nav.Link>
       </Nav>
       <Form inline>
-        <FormControl type="text" placeholder="Search" className="mr-sm-2" />
-        <Button variant="outline-success">Search</Button>
+        <FormControl type="text" placeholder="Search" className="searchBox" />
+        <Button variant="outline-success" className="searchBox">Search</Button>
       </Form>
     </Navbar.Collapse>
   </Navbar>

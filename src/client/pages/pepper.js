@@ -10,7 +10,7 @@ import PepperGallery from './subPages/pepperGallery';
 export default class Pepper extends Component {
   state = {
     shouldButtonsBeLarge: true,
-    shouldPepperGalleryShow: false
+    shouldPepperGalleryShow: false,
   };
 
   componentDidMount() {

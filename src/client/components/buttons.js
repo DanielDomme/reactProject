@@ -3,16 +3,17 @@ import { bool, func, string } from 'prop-types';
 import '../app.css';
 import { Card } from 'react-bootstrap';
 
-const PostButton = ({ text, toggleModalVisibility }) => (
-  <button type="button" className="postButton" onClick={toggleModalVisibility}>{text}</button>
+const PostButton = ({ styleName, text, toggleModalVisibility }) => (
+  <button type="button" className={styleName} onClick={toggleModalVisibility}>{text}</button>
 );
 PostButton.defaultProps = {
-  text: ''
+  text: '',
 };
 
 PostButton.propTypes = {
   text: string,
-  toggleModalVisibility: func.isRequired
+  toggleModalVisibility: func.isRequired,
+  styleName: string.isRequired
 };
 
 const CloseButton = ({ closeButtonHandler }) => (

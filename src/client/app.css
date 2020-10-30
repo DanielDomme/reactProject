@@ -9,18 +9,35 @@ body {
 
 .postButton {
   background-color: #17a2b8;
-  padding: 20px;
-  height: 8vmax;
-  width: 8vmax;
+  padding: 15px;
+  height: 5vmax;
+  width: 5vmax;
   border-radius: 50%;
   border: none;
   box-shadow: 0 5px 9px 0 lightgrey, 0 7px 22px 0 lightgrey;
   position: fixed;
-  bottom: 45px;
-  right: 45px;
+  bottom: 25px;
+  right: 25px;
   font: bold 80% Roboto, sans-serif;
   text-align: center;
-  font-size: 1.75vw;
+  font-size: 0.9vw;
+  color: aliceblue;
+}
+
+.postButton2 {
+  background-color: #17a2b8;
+  padding: 15px;
+  height: 5vmax;
+  width: 5vmax;
+  border-radius: 50%;
+  border: none;
+  box-shadow: 0 5px 9px 0 lightgrey, 0 7px 22px 0 lightgrey;
+  position: fixed;
+  bottom: 25px;
+  right: 25px;
+  font: bold 80% Roboto, sans-serif;
+  text-align: center;
+  font-size: 2vw;
   color: aliceblue;
 }
 
@@ -32,9 +49,22 @@ button:hover {
   padding: 20px;
 }
 
+.bannerImage {
+  max-width: 100%;
+  height: auto;
+}
+
+.titleContainer {
+  position: relative;
+  text-align: center;
+  color: white;
+}
+
 .titleBanner {
+  position: absolute;
   font: bold 100% Roboto, sans-serif;
-  font-size: 50px;
+  font-size: 25px;
+  transform: translate(50%, -100%);
 }
 
 .deleteButton {
@@ -94,4 +124,21 @@ button:hover {
   /*border-color: orange;*/
   /*border-width: 1px;*/
   box-shadow: 0 5px 9px 0 lightgrey, 0 7px 22px 0 orange;
+}
+
+.buttonize:active {
+  box-shadow: 0 5px 9px 0 lightgrey, 0 7px 22px 0 orange;
+}
+
+.navBar {
+  height: 30px;
+  font-size: small;
+}
+
+.searchBox {
+  text-align: center;
+  padding: 0;
+  margin: 0 3px;
+  height: 22px;
+  font-size: small;
 }

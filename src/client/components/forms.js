@@ -16,12 +16,18 @@ const WoodworkingForm = ({ handleUserImageNameInput, handleUserBodyInput }) => (
     <Form.File id="addImageButton" />
   </Form>
 );
-WoodworkingForm.defaultProps = {
-  handleUserBodyInput: () => {},
-  handleUserImageNameInput: () => {}
-};
 WoodworkingForm.protoTypes = {
   handleUserImageNameInput: func.isRequired,
   handleUserBodyInput: func.isRequired
 };
-export default WoodworkingForm;
+
+const AddImageToGalleryForm = ({ handleSelectedImage }) => (
+  <Form>
+    <Form.Label>Select Image</Form.Label>
+    <Form.File.Input id="addImageButton" onChange={event => handleSelectedImage(event)} />
+  </Form>
+);
+AddImageToGalleryForm.defaultProps = {
+  handleSelectedImage: func.isRequired
+};
+export { WoodworkingForm, AddImageToGalleryForm };

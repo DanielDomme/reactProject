@@ -1,6 +1,7 @@
 .imageCard {
     width: 20%;
-    margin: 3px;
+    height: 20%;
+    margin: 5px;
 }
 
 .flex-container {

@@ -56,6 +56,7 @@ export default class Woodworking extends Component {
 
   handleModalPost = (postInfo) => {
     console.log('HERE\n');
+    console.log(postInfo.imageLocation);
     const newPost = {
       postTitle: postInfo.postTitle,
       imageLocation: postInfo.imageLocation,
@@ -101,7 +102,7 @@ export default class Woodworking extends Component {
           handleModalSubmit={this.handleModalPost}
         />
         {imageCardArray}
-        <PostButton text="Add Post" toggleModalVisibility={this.toggleModal} />
+        <PostButton styleName="postButton" text="Add Post" toggleModalVisibility={this.toggleModal} />
       </Container>
     );
   }

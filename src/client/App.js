@@ -7,6 +7,7 @@ import Nav from './components/nav';
 import Woodworking from './pages/woodworking';
 import './app.css';
 import Pepper from './pages/pepper';
+import panorama from '../resources/panorama2.png';
 
 const Error = () => <h1 className="text-danger">!Error 404! Everything Went Wrong!</h1>;
 
@@ -23,13 +24,9 @@ export default class App extends React.Component {
     const { pageName } = this.state;
     return (
       <div>
-        <div style={{
-          backgroundColor: '#17a2b8',
-          padding: '40px',
-        }}
-        >
-          <span className="titleBanner">{pageName}</span>
-
+        <div className="titleContainer">
+          <img className="bannerImage" src={panorama} alt="titlePageImage" />
+          <div className="titleBanner">{pageName}</div>
         </div>
         <Nav />
         <Router>
