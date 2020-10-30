@@ -27,10 +27,11 @@ const ImageCardButton = ({
   buttonClickHandler, cardImage, buttonText, size
 }) => (
   <Card className={`text-black ${size ? 'imageCardsLarge' : 'imageCardsSmall'} buttonize`} onClick={buttonClickHandler}>
-    {/* {size ? null : <Card.Title style={{ fontSize: '11px' }}>{buttonText.substr(buttonText.indexOf(' ') + 1)}</Card.Title>} */}
+    {/* {size ? null : <Card.Title style={{ fontSize: '11px' }}>
+    {buttonText.substr(buttonText.indexOf(' ') + 1)}</Card.Title>} */}
     <Card.Img className="navCardImages" src={cardImage} alt="Picture of Pepper" />
     <Card.ImgOverlay>
-      <Card.Title style={{ fontSize: `${size ? '50px' : '11px'}` }}>
+      <Card.Title style={{ fontSize: `${size ? '4vw' : '0.75vw'}` }}>
         {size ? buttonText : (buttonText.substr(buttonText.indexOf(' ') + 1))}
       </Card.Title>
     </Card.ImgOverlay>

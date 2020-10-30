@@ -8,7 +8,7 @@ import Woodworking from './pages/woodworking';
 import './app.css';
 import Pepper from './pages/pepper';
 
-const Error = () => <h1>Error</h1>;
+const Error = () => <h1 className="text-danger">!Error 404! Everything Went Wrong!</h1>;
 
 export default class App extends React.Component {
   state = {
