@@ -1,0 +1,43 @@
+/*Nav bar*/
+#basic-navbar-nav {
+    background: #f8f9fa;
+    z-index: 999;
+}
+
+.navBar {
+    height: 40px;
+    font-size: small;
+    /*align-content: center;*/
+    vertical-align: center;
+    padding: 0 10px;
+}
+
+.navbar-brand {
+    vertical-align: center;
+}
+
+.navbar-toggler {
+    padding: 0;
+    height: 30px;
+    width: 30px;
+}
+
+.form-inline {
+    display: block;
+}
+
+.navbar-toggler-icon {
+    height: 25px;
+    width: 25px;
+}
+
+/*Pepper Buttons*/
+.navCardImages {
+    opacity: 45%;
+}
+
+/*tables.js*/
+.table-header:hover {
+    background-color: #f3c66d;
+    cursor: pointer;
+}

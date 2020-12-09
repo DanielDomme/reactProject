@@ -1,6 +1,7 @@
 import React from 'react';
 import { bool, func, string } from 'prop-types';
 import '../app.css';
+import './componentsStyle/componentStyle.css';
 import { Card } from 'react-bootstrap';
 
 const PostButton = ({ styleName, text, toggleModalVisibility }) => (

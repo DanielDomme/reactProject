@@ -111,10 +111,6 @@ button:hover {
   margin: 25px;
 }
 
-.navCardImages {
-  opacity: 45%;
-}
-
 .buttonize {
   cursor: pointer;
   box-shadow: 0 5px 9px 0 lightgrey, 0 7px 22px 0 lightgrey;
@@ -127,13 +123,9 @@ button:hover {
 }
 
 .buttonize:active {
-  box-shadow: 0 5px 9px 0 lightgrey, 0 7px 22px 0 orange;
+  box-shadow: 0 5px 9px 0 lightgrey, 0 7px 22px 0 #ffa500;
 }
 
-.navBar {
-  height: 30px;
-  font-size: small;
-}
 
 .searchBox {
   text-align: center;

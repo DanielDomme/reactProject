@@ -1,10 +1,12 @@
 import React, { Component } from 'react';
 import { Card } from 'react-bootstrap';
 import './subPages.css';
-import { ZoomPictureModal } from '../../components/modals';
-import { PostButton } from '../../components/buttons';
-import AddPictureModal from '../../components/addGalleryPictureModal';
+import { ZoomPictureModal } from '../../../components/modals';
+import { PostButton } from '../../../components/buttons';
+import AddPictureModal from '../../../components/addGalleryPictureModal';
 
+
+// TODO: Refactor to generic gallery.  Pass API Array
 export default class PepperGallery extends Component {
   state = {
     shouldShowZoomPictureModal: false,

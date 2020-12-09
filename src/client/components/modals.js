@@ -1,7 +1,7 @@
 import React from 'react';
 import { Modal, Button, Image } from 'react-bootstrap';
 import { bool, func, string } from 'prop-types';
-import './componentStyle.css';
+import './componentsStyle/componentStyle.css';
 
 const ZoomPictureModal = ({ shouldCloseZoomModal, imageToShow, shouldModalShow }) => (
   <Modal

@@ -6,7 +6,7 @@ import Users from './pages/users';
 import Nav from './components/nav';
 import Woodworking from './pages/woodworking';
 import './app.css';
-import Pepper from './pages/pepper';
+import Pepper from './pages/pepperPage/pepper';
 import panorama from '../resources/panorama2.png';
 
 const Error = () => <h1 className="text-danger">!Error 404! Everything Went Wrong!</h1>;

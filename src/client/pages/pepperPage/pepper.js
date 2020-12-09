@@ -1,16 +1,18 @@
 import React, { Component } from 'react';
 import { func } from 'prop-types';
-import pepperGallery from '../../resources/pepperCardImage.png';
-import pepperMedical from '../../resources/medicalPepper.png';
-import pepperAwards from '../../resources/awardsPepper.png';
-import pepperStats from '../../resources/busyPepper.png';
-import { ImageCardButton } from '../components/buttons';
+import pepperGallery from '../../../resources/pepperCardImage.png';
+import pepperMedical from '../../../resources/medicalPepper.png';
+import pepperAwards from '../../../resources/awardsPepper.png';
+import pepperStats from '../../../resources/busyPepper.png';
+import { ImageCardButton } from '../../components/buttons';
 import PepperGallery from './subPages/pepperGallery';
+import PepperMedical from './subPages/pepperMedical';
 
 export default class Pepper extends Component {
   state = {
     shouldButtonsBeLarge: true,
     shouldPepperGalleryShow: false,
+    shouldPepperMedicalShow: false,
   };
 
   componentDidMount() {
@@ -39,6 +41,7 @@ export default class Pepper extends Component {
 
   onMedicalClick = () => {
     this.hideAllComponents();
+    this.setState({ shouldPepperMedicalShow: true });
     this.alternateButtonSize();
     console.log('Medical Click');
   }
@@ -56,7 +59,7 @@ export default class Pepper extends Component {
   }
 
   render() {
-    const { shouldButtonsBeLarge, shouldPepperGalleryShow } = this.state;
+    const { shouldButtonsBeLarge, shouldPepperGalleryShow, shouldPepperMedicalShow } = this.state;
     return (
       <div>
         <h1>
@@ -72,6 +75,7 @@ export default class Pepper extends Component {
             <ImageCardButton buttonClickHandler={this.onStatsClick} size={shouldButtonsBeLarge} cardImage={pepperStats} buttonText={'Pepper\'s Stats'} />
           </div>
           {shouldPepperGalleryShow ? <PepperGallery /> : null}
+          {shouldPepperMedicalShow ? <PepperMedical /> : null}
         </div>
       </div>
     );
