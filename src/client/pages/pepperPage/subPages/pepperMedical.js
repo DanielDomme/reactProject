@@ -56,8 +56,6 @@ export default class PepperMedical extends Component {
     return isSorted;
   }
 
-
-  // TODO: If already sorted case
   onSortClickHandler = (item) => {
     const { tableEntries, sortBy, isInverted } = this.state;
     let inverted;
