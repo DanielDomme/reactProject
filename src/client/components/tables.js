@@ -5,6 +5,18 @@ import {
 } from 'prop-types';
 import './componentsStyle/componentStyle.css';
 
+const reformatTableStringContentsByKey = (key, table) => {
+  if (key === 'date') {
+    return table[key].toLocaleDateString('en-US',
+      {
+        weekday: 'long', year: 'numeric', month: 'long', day: 'numeric'
+      });
+  }
+  if (key === 'cost') {
+    return `$${table[key]}`;
+  }
+  return table[key];
+};
 
 const MedicalTable = ({ sortClickHandler, tableHeadersMap, tableEntries }) => (
   <Table responsive striped bordered hover>
@@ -22,7 +34,7 @@ const MedicalTable = ({ sortClickHandler, tableHeadersMap, tableEntries }) => (
                 </Tooltip>
               )}
             >
-              <th className="table-header" onClick={typeof headerRow[key] === 'string' ? () => sortClickHandler(key) : null} key={key}>{headerRow[key]}</th>
+              <th className="table-header" onClick={() => sortClickHandler(key)} key={key}>{headerRow[key]}</th>
             </OverlayTrigger>
           ))))}
       </tr>
@@ -32,10 +44,7 @@ const MedicalTable = ({ sortClickHandler, tableHeadersMap, tableEntries }) => (
         <tr key={i.toString()}>
           {Object.keys(tableRow).map(keyName => (
             <td key={keyName}>
-              {keyName === 'date' ? tableRow[keyName].toLocaleDateString('en-US',
-                {
-                  weekday: 'long', year: 'numeric', month: 'long', day: 'numeric'
-                }) : tableRow[keyName]}
+              {reformatTableStringContentsByKey(keyName, tableRow)}
             </td>
           ))}
         </tr>

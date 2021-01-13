@@ -7,6 +7,7 @@ import pepperStats from '../../../resources/busyPepper.png';
 import { ImageCardButton } from '../../components/buttons';
 import PepperGallery from './subPages/pepperGallery';
 import PepperMedical from './subPages/pepperMedical';
+import './subPages/subPages.css';
 
 export default class Pepper extends Component {
   state = {
@@ -62,10 +63,7 @@ export default class Pepper extends Component {
     const { shouldButtonsBeLarge, shouldPepperGalleryShow, shouldPepperMedicalShow } = this.state;
     return (
       <div>
-        <h1 style={{
-          backgroundColor: '#17a2b8', color: 'black', borderWidth: '0.25px', borderColor: 'black', borderStyle: 'solid', padding: '5px', margin: '5px', fontSize: '3vw'
-        }}
-        >
+        <h1 className="pepperH1">
           {('Welcome to a Page Dedicated to All Things Pepper').toUpperCase()}
         </h1>
         <div className="flex-container">
@@ -74,7 +72,7 @@ export default class Pepper extends Component {
             <ImageCardButton buttonClickHandler={this.onMedicalClick} size={shouldButtonsBeLarge} buttonText="Medical" cardImage={pepperMedical} />
             {/* </div> */}
             {/* <div className="flex-row d-flex justify-content-center"> */}
-            <ImageCardButton buttonClickHandler={this.onAwardsClick} size={shouldButtonsBeLarge} buttonText="Show" cardImage={pepperAwards} />
+            <ImageCardButton buttonClickHandler={this.onAwardsClick} size={shouldButtonsBeLarge} buttonText="Shows" cardImage={pepperAwards} />
             <ImageCardButton buttonClickHandler={this.onStatsClick} size={shouldButtonsBeLarge} cardImage={pepperStats} buttonText="Stats" />
           </div>
           {shouldPepperGalleryShow ? <PepperGallery /> : null}

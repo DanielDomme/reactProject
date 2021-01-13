@@ -21,7 +21,7 @@ export default class PepperMedical extends Component {
         date: 'Date'
       },
       {
-        title: 'Title'
+        type: 'Medical Entry Type'
       },
       {
         description: 'Description'
@@ -35,13 +35,16 @@ export default class PepperMedical extends Component {
     ],
     tableEntries: [
       {
-        entryId: 1, date: new Date('1/10/98'), title: 'Spay', description: 'Took pepper in to get spayed.', performedBy: 'Dr. Kaitlyn', cost: 200.00
+        entryId: 1, date: new Date('1/10/98'), type: 'Surgery', description: 'Took pepper in to get spayed.', performedBy: 'Dr. Kaitlyn', cost: 200.00
       },
       {
-        entryId: 2, date: new Date('12 September 2020'), title: 'Nails Trimmed', description: 'Trimmed her nails.', performedBy: 'Ashleigh', cost: 0.0
+        entryId: 2, date: new Date('12 September 2020'), type: 'Grooming', description: 'Trimmed her nails.', performedBy: 'Ashleigh', cost: 0.0
       },
       {
-        entryId: 3, date: new Date('23 November 2020'), title: 'Ears Cleaned', description: 'Ears were inflamed. Put cleaner in.', performedBy: 'Ashleigh', cost: 0.0
+        entryId: 3, date: new Date('23 November 2020'), type: 'Grooming', description: 'Ears were inflamed. Put cleaner in.', performedBy: 'Ashleigh', cost: 0.0
+      },
+      {
+        entryId: 58, date: new Date('5/15/2015'), type: 'Grooming', description: 'Fur trimmed', performedBy: 'Ashleigh', cost: 0.0
       }
     ]
   };

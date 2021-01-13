@@ -11,3 +11,16 @@
 .tableSpacing {
     padding: 10px;
 }
+
+.pepperH1{
+    /*background-color: #17a2b8;*/
+    color: black;
+    border-width: 0.25px;
+    border-color: black;
+    border-style: solid;
+    padding: 5px;
+    margin: 5px;
+    font-size: 3vw;
+    border-radius: 25px;
+    background-image: linear-gradient(to top right, #17a2b8, #17B885);
+}

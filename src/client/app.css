@@ -8,7 +8,7 @@ body {
 }
 
 .postButton {
-  background-color: #17a2b8;
+  background-image: linear-gradient(to top right, #17a2b8, #17B885);
   padding: 15px;
   height: 5vmax;
   width: 5vmax;
@@ -25,7 +25,7 @@ body {
 }
 
 .postButton2 {
-  background-color: #17a2b8;
+  background-image: linear-gradient(to top right, #17a2b8, #17B885);
   padding: 15px;
   height: 5vmax;
   width: 5vmax;
@@ -42,7 +42,7 @@ body {
 }
 
 button:hover {
-  background-color: orange;
+  background-image: linear-gradient(to top right, orange, #F1E4B3);
 }
 
 .woodWorkingPostCards {
