@@ -92,40 +92,6 @@ button:hover {
   width: 0;
 }
 
-.imageCardsLarge {
-  max-width: 30%;
-  margin: 25px;
-  /*text-shadow:*/
-  /*        -1px -1px 0 #000000,*/
-  /*        1px -1px 0 #000000,*/
-  /*        -1px 1px 0 #000000,*/
-  /*        1px 1px 0 #000000,*/
-  /*        -2px 0 0 #000000,*/
-  /*        2px 0 0 #000000,*/
-  /*        0 2px 0 #000000,*/
-  /*        0 -2px 0 #000000;*/
-}
-
-.imageCardsSmall {
-  max-width: 7%;
-  margin: 25px;
-}
-
-.buttonize {
-  cursor: pointer;
-  box-shadow: 0 5px 9px 0 lightgrey, 0 7px 22px 0 lightgrey;
-}
-
-.buttonize:hover {
-  /*border-color: orange;*/
-  /*border-width: 1px;*/
-  box-shadow: 0 5px 9px 0 lightgrey, 0 7px 22px 0 orange;
-}
-
-.buttonize:active {
-  box-shadow: 0 5px 9px 0 lightgrey, 0 7px 22px 0 #ffa500;
-}
-
 
 .searchBox {
   text-align: center;

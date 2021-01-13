@@ -36,6 +36,31 @@
     opacity: 45%;
 }
 
+.imageCardsLarge {
+    max-width: 30%;
+    margin: 25px;
+}
+
+.imageCardsSmall {
+    max-width: 7%;
+    margin: 25px;
+}
+
+.buttonize {
+    cursor: pointer;
+    box-shadow: 0 5px 9px 0 lightgrey, 0 7px 22px 0 lightgrey;
+}
+
+.buttonize:hover {
+    /*border-color: orange;*/
+    /*border-width: 1px;*/
+    box-shadow: 0 5px 9px 0 lightgrey, 0 7px 22px 0 orange;
+}
+
+.buttonize:active {
+    box-shadow: 0 5px 9px 0 lightgrey, 0 7px 22px 0 #ffa500;
+}
+
 /*tables.js*/
 .table-header:hover {
     background-color: #f3c66d;

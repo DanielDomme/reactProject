@@ -29,7 +29,7 @@ export default class Pepper extends Component {
   }
 
   hideAllComponents = () => {
-    this.setState({ shouldPepperGalleryShow: false });
+    this.setState({ shouldPepperGalleryShow: false, shouldPepperMedicalShow: false });
   }
 
   onGalleryClick = () => {
@@ -62,17 +62,20 @@ export default class Pepper extends Component {
     const { shouldButtonsBeLarge, shouldPepperGalleryShow, shouldPepperMedicalShow } = this.state;
     return (
       <div>
-        <h1>
-          Welcome a Page Dedicated to All Things Pepper
+        <h1 style={{
+          backgroundColor: '#17a2b8', color: 'black', borderWidth: '0.25px', borderColor: 'black', borderStyle: 'solid', padding: '5px', margin: '5px', fontSize: '3vw'
+        }}
+        >
+          {('Welcome to a Page Dedicated to All Things Pepper').toUpperCase()}
         </h1>
         <div className="flex-container">
           <div className="flex-row d-flex justify-content-center">
-            <ImageCardButton buttonClickHandler={this.onGalleryClick} size={shouldButtonsBeLarge} buttonText={'Pepper\'s Gallery'} cardImage={pepperGallery} />
-            <ImageCardButton buttonClickHandler={this.onMedicalClick} size={shouldButtonsBeLarge} buttonText={'Pepper\'s Medical'} cardImage={pepperMedical} />
+            <ImageCardButton buttonClickHandler={this.onGalleryClick} size={shouldButtonsBeLarge} buttonText="Gallery" cardImage={pepperGallery} />
+            <ImageCardButton buttonClickHandler={this.onMedicalClick} size={shouldButtonsBeLarge} buttonText="Medical" cardImage={pepperMedical} />
             {/* </div> */}
             {/* <div className="flex-row d-flex justify-content-center"> */}
-            <ImageCardButton buttonClickHandler={this.onAwardsClick} size={shouldButtonsBeLarge} buttonText={'Pepper\'s Awards'} cardImage={pepperAwards} />
-            <ImageCardButton buttonClickHandler={this.onStatsClick} size={shouldButtonsBeLarge} cardImage={pepperStats} buttonText={'Pepper\'s Stats'} />
+            <ImageCardButton buttonClickHandler={this.onAwardsClick} size={shouldButtonsBeLarge} buttonText="Show" cardImage={pepperAwards} />
+            <ImageCardButton buttonClickHandler={this.onStatsClick} size={shouldButtonsBeLarge} cardImage={pepperStats} buttonText="Stats" />
           </div>
           {shouldPepperGalleryShow ? <PepperGallery /> : null}
           {shouldPepperMedicalShow ? <PepperMedical /> : null}

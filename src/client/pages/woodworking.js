@@ -79,8 +79,6 @@ export default class Woodworking extends Component {
     }));
   }
 
-  addPostClickHandler = () => {}
-
   render() {
     const { userImages, isModalShowing } = this.state;
     // TODO: break out to gallery, then move gallery contents to cards

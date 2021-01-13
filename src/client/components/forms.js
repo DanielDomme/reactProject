@@ -27,7 +27,22 @@ const AddImageToGalleryForm = ({ handleSelectedImage }) => (
     <Form.File.Input id="addImageButton" onChange={event => handleSelectedImage(event)} />
   </Form>
 );
-AddImageToGalleryForm.defaultProps = {
+AddImageToGalleryForm.propTypes = {
   handleSelectedImage: func.isRequired
 };
-export { WoodworkingForm, AddImageToGalleryForm };
+
+const AddMedicalEntryForm = () => (
+  <Form>
+    <Form.Label>Date</Form.Label>
+    <Form.Control placeholder="Date" />
+    <Form.Label>Title</Form.Label>
+    <Form.Control placeholder="Title" />
+    <Form.Label>Description</Form.Label>
+    <Form.Control as="textarea" placeholder="Description..." />
+    <Form.Label>Performed By</Form.Label>
+    <Form.Control placeholder="Performed By" />
+    <Form.Label>Cost</Form.Label>
+    <Form.Control placeholder="Cost" />
+  </Form>
+);
+export { WoodworkingForm, AddImageToGalleryForm, AddMedicalEntryForm };

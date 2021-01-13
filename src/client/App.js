@@ -8,6 +8,7 @@ import Woodworking from './pages/woodworking';
 import './app.css';
 import Pepper from './pages/pepperPage/pepper';
 import panorama from '../resources/panorama2.png';
+import Knitting from './pages/Knitting';
 
 const Error = () => <h1 className="text-danger">!Error 404! Everything Went Wrong!</h1>;
 
@@ -33,10 +34,10 @@ export default class App extends React.Component {
           {/* A <Switch> looks through its children <Route>s and
             renders the first one that matches the current URL. */}
           <Switch>
-            <Route path="/about">
+            <Route path="/about" exact>
               <About />
             </Route>
-            <Route path="/users">
+            <Route path="/users" exact>
               <Users updatePageTitle={this.updatePageTitle} />
             </Route>
             <Route path={['/pepper', '/peppers-corner']}>
@@ -47,6 +48,9 @@ export default class App extends React.Component {
             </Route>
             <Route exact path={['/', '/home']}>
               <Home />
+            </Route>
+            <Route exact path="/knitting">
+              <Knitting updatePageTitle={this.updatePageTitle} />
             </Route>
             <Route component={Error} />
           </Switch>

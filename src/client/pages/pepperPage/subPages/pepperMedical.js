@@ -5,9 +5,12 @@ import {
   sortObjectArrayAscendingByAttribute,
   sortObjectArrayDescendingByAttribute
 } from '../../../../utils/ObjectArraySortingUtil';
+import { PostButton } from '../../../components/buttons';
+import { AddMedicalModal } from '../../../components/modals';
 
 export default class PepperMedical extends Component {
   state = {
+    shouldModalShow: false,
     sortBy: 'entryId',
     isInverted: false,
     tableHeadersMap: [
@@ -73,8 +76,18 @@ export default class PepperMedical extends Component {
     });
   }
 
+  handleSubmitModal = (medicalEntry) => {
+    this.toggleModal();
+  }
+
+  toggleModal = () => {
+    this.setState(prev => ({
+      shouldModalShow: !prev.shouldModalShow
+    }));
+  }
+
   render() {
-    const { tableHeadersMap, tableEntries } = this.state;
+    const { tableHeadersMap, tableEntries, shouldModalShow } = this.state;
     return (
       <div className="tableSpacing">
         <MedicalTable
@@ -82,6 +95,12 @@ export default class PepperMedical extends Component {
           tableHeadersMap={tableHeadersMap}
           tableEntries={tableEntries}
         />
+        <AddMedicalModal
+          shouldMedicalModalShow={shouldModalShow}
+          handleCloseModal={() => this.toggleModal()}
+          handleModalSubmit={this.handleSubmitModal}
+        />
+        <PostButton styleName="postButton2" toggleModalVisibility={this.toggleModal} text="+" />
       </div>
     );
   }
