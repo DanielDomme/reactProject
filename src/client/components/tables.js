@@ -18,7 +18,7 @@ const reformatTableStringContentsByKey = (key, table) => {
   return table[key];
 };
 
-const MedicalTable = ({ sortClickHandler, tableHeadersMap, tableEntries }) => (
+const MedicalTable = ({ sortClickHandler, tableHeadersMap, tableEntries, onEntryClick }) => (
   <Table responsive striped bordered hover>
     <thead>
       <tr key={tableHeadersMap.length.toString()}>
@@ -41,7 +41,7 @@ const MedicalTable = ({ sortClickHandler, tableHeadersMap, tableEntries }) => (
     </thead>
     <tbody>
       {tableEntries.map((tableRow, i) => (
-        <tr key={i.toString()}>
+        <tr key={i.toString()} onClick={() => onEntryClick(tableRow.entryId)}>
           {Object.keys(tableRow).map(keyName => (
             <td key={keyName}>
               {reformatTableStringContentsByKey(keyName, tableRow)}
@@ -71,7 +71,8 @@ MedicalTable.propTypes = {
     performedBy: string,
     cost: number
   })).isRequired,
-  sortClickHandler: func.isRequired
+  sortClickHandler: func.isRequired,
+  onEntryClick: func.isRequired
 };
 
 

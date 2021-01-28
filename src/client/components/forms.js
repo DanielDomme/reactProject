@@ -1,25 +1,29 @@
 import React from 'react';
 import { Col, Form, Row } from 'react-bootstrap';
 import { func } from 'prop-types';
+import * as PropTypes from 'prop-types';
 
-const WoodworkingForm = ({ handleUserImageNameInput, handleUserBodyInput }) => (
+const WoodProjectForm = ({ onTitleChange, onBodyChange, onPicLocationChange }) => (
   <Form>
     <Form.Group controlId="formPostTitle">
       <Form.Label>Post Title</Form.Label>
-      <Form.Control placeholder="Post Title" />
+      <Form.Control placeholder="Post Title" required onChange={onTitleChange} />
     </Form.Group>
     <Form.Group>
       <Form.Label>Post Body Information</Form.Label>
-      <Form.Control as="textarea" />
+      <Form.Control as="textarea" required onChange={onBodyChange} />
     </Form.Group>
     <Form.Label>Upload Images</Form.Label>
-    <Form.File id="addImageButton" />
+    <Form.File.Input id="addImageButton" onChange={onPicLocationChange} />
   </Form>
 );
-WoodworkingForm.protoTypes = {
-  handleUserImageNameInput: func.isRequired,
-  handleUserBodyInput: func.isRequired
+
+WoodProjectForm.propTypes = {
+  onTitleChange: PropTypes.func.isRequired,
+  onBodyChange: PropTypes.func.isRequired,
+  onPicLocationChange: PropTypes.func.isRequired
 };
+
 
 const AddImageToGalleryForm = ({ handleSelectedImage }) => (
   <Form>
@@ -31,12 +35,14 @@ AddImageToGalleryForm.propTypes = {
   handleSelectedImage: func.isRequired
 };
 
-const AddMedicalEntryForm = () => (
+const AddMedicalEntryForm = ({
+  onEntryTypeChange, onDateChange, onPerformedByChange, onCostChange, onDescriptionChange
+}) => (
   <Form>
     <Row>
       <Col>
-        <Form.Label>Type</Form.Label>
-        <Form.Control as="select">
+        <Form.Label>Entry Type</Form.Label>
+        <Form.Control as="select" onChange={onEntryTypeChange}>
           {/* TODO: refactor options and make customizable */}
           <option />
           <option>Surgery</option>
@@ -49,21 +55,30 @@ const AddMedicalEntryForm = () => (
       </Col>
       <Col>
         <Form.Label>Date</Form.Label>
-        <Form.Control placeholder="MM/DD/YYYY" />
+        <Form.Control placeholder="MM/DD/YYYY" onChange={onDateChange} />
       </Col>
     </Row>
     <Row>
       <Col>
         <Form.Label>Performed By</Form.Label>
-        <Form.Control placeholder="Performed By" />
+        <Form.Control placeholder="Performed By" onChange={onPerformedByChange} />
       </Col>
       <Col>
         <Form.Label>Cost</Form.Label>
-        <Form.Control placeholder="Cost" />
+        <Form.Control placeholder="Cost" onChange={onCostChange} />
       </Col>
     </Row>
     <Form.Label>Description</Form.Label>
-    <Form.Control as="textarea" placeholder="Description..." />
+    <Form.Control as="textarea" placeholder="Description..." onChange={onDescriptionChange} />
   </Form>
 );
-export { WoodworkingForm, AddImageToGalleryForm, AddMedicalEntryForm };
+
+AddMedicalEntryForm.propTypes = {
+  onEntryTypeChange: func.isRequired,
+  onDateChange: func.isRequired,
+  onPerformedByChange: func.isRequired,
+  onCostChange: func.isRequired,
+  onDescriptionChange: func.isRequired
+};
+
+export { WoodProjectForm, AddImageToGalleryForm, AddMedicalEntryForm };

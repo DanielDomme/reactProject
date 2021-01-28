@@ -6,7 +6,7 @@ import {
   sortObjectArrayDescendingByAttribute
 } from '../../../../utils/ObjectArraySortingUtil';
 import { PostButton } from '../../../components/buttons';
-import { AddMedicalModal } from '../../../components/modals';
+import AddMedicalModal from '../../../components/AddMedicalModal';
 
 export default class PepperMedical extends Component {
   state = {
@@ -79,8 +79,24 @@ export default class PepperMedical extends Component {
     });
   }
 
+  // TODO: Clear out form fields
   handleSubmitModal = (medicalEntry) => {
+    const newMedicalEntry = {
+      entryId: Date.now(),
+      date: new Date(medicalEntry.date),
+      type: medicalEntry.entryType,
+      description: medicalEntry.description,
+      performedBy: medicalEntry.performedBy,
+      cost: Number(medicalEntry.cost)
+    };
+    this.setState(prevState => ({
+      tableEntries: [...prevState.tableEntries, newMedicalEntry]
+    }));
     this.toggleModal();
+  }
+
+  handleEntryClick = (entry) => {
+    console.log(entry);
   }
 
   toggleModal = () => {
@@ -95,6 +111,7 @@ export default class PepperMedical extends Component {
       <div className="tableSpacing">
         <MedicalTable
           sortClickHandler={this.onSortClickHandler}
+          onEntryClick={this.handleEntryClick}
           tableHeadersMap={tableHeadersMap}
           tableEntries={tableEntries}
         />

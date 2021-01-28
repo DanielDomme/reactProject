@@ -1,7 +1,8 @@
 import React from 'react';
-import { Button, Form, Modal } from 'react-bootstrap';
+import { Button, Modal } from 'react-bootstrap';
 import { bool, func } from 'prop-types';
 import '../app.css';
+import { WoodProjectForm } from './forms';
 
 export default class WoodworkingPostModal extends React.Component {
   constructor(props) {
@@ -53,10 +54,6 @@ export default class WoodworkingPostModal extends React.Component {
 
   render() {
     const { isModalShowing } = this.props;
-    // const { handleModalCancel, handleModalSubmit } = this.props;
-    // const {
-    //   postTitle, bodyContent, imageLocation
-    // } = this.state;
     return (
       <Modal show={isModalShowing} onHide={this.handleCancel}>
         <Modal.Header closeButton>
@@ -65,22 +62,11 @@ export default class WoodworkingPostModal extends React.Component {
           </Modal.Title>
         </Modal.Header>
         <Modal.Body className="modalBodyText">
-          {/* <WoodworkingForm */}
-          {/*  handleUserImageNameInput={handleImageNameInput} */}
-          {/*  handleUserBodyInput={handleBodyContentInput} */}
-          {/* /> */}
-          <Form>
-            <Form.Group controlId="formPostTitle">
-              <Form.Label>Post Title</Form.Label>
-              <Form.Control placeholder="Post Title" required onChange={event => this.handlePostTitleInput(event)} />
-            </Form.Group>
-            <Form.Group>
-              <Form.Label>Post Body Information</Form.Label>
-              <Form.Control as="textarea" required onChange={event => this.handleBodyContentInput(event)} />
-            </Form.Group>
-            <Form.Label>Upload Images</Form.Label>
-            <Form.File.Input id="addImageButton" onChange={event => this.handleLocationNameInput(event)} />
-          </Form>
+          <WoodProjectForm
+            onTitleChange={event => this.handlePostTitleInput(event)}
+            onBodyChange={event => this.handleBodyContentInput(event)}
+            onPicLocationChange={event => this.handleLocationNameInput(event)}
+          />
         </Modal.Body>
         <Modal.Footer>
           <Button onClick={() => this.handleSubmit(this.state)}>Post</Button>
