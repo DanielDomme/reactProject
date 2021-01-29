@@ -2,7 +2,29 @@ import React from 'react';
 import { bool, func, string } from 'prop-types';
 import '../app.css';
 import './componentsStyle/componentStyle.css';
-import { Card, OverlayTrigger, Tooltip } from 'react-bootstrap';
+import { Button, Card, OverlayTrigger, Tooltip } from 'react-bootstrap';
+import trashCan from '../../resources/trashCan.png';
+import editIcon from '../../resources/betterEditIcon.png';
+
+const DeleteButton = ({ onDeleteClick }) => (
+  <Button variant="outline-dark" className="noBorder" onClick={onDeleteClick}>
+    <img className="deleteButton" src={trashCan} alt="Delete Button" />
+  </Button>
+);
+
+DeleteButton.propTypes = {
+  onDeleteClick: func.isRequired
+};
+
+const EditButton = ({ onEditClick }) => (
+  <Button variant="outline-dark" className="noBorder" onClick={onEditClick}>
+    <img className="deleteButton" src={editIcon} alt="Edit Post Button" />
+  </Button>
+);
+
+EditButton.propTypes = {
+  onEditClick: func.isRequired
+};
 
 const PostButton = ({ styleName, text, toggleModalVisibility }) => (
   <OverlayTrigger
@@ -56,4 +78,6 @@ ImageCardButton.propTypes = {
   size: bool.isRequired
 };
 
-export { PostButton, CloseButton, ImageCardButton };
+export {
+  DeleteButton, EditButton, PostButton, CloseButton, ImageCardButton
+};

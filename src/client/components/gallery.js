@@ -1,9 +1,8 @@
 import React from 'react';
-import { Button, Card } from 'react-bootstrap';
+import { Card } from 'react-bootstrap';
 import { string } from 'prop-types';
-import trashCan from '../../resources/trashCan.png';
-import editIcon from '../../resources/betterEditIcon.png';
 import '../app.css';
+import { DeleteButton, EditButton } from './buttons';
 
 const Gallery = ({ title, imageLocation, body }) => (
   <Card style={{ width: '18rem' }}>
@@ -15,12 +14,8 @@ const Gallery = ({ title, imageLocation, body }) => (
       <Card.Text>{body}</Card.Text>
     </Card.Body>
     <Card.Footer>
-      <Button variant="outline-dark" className="noBorder">
-        <img className="deleteButton" src={trashCan} alt="Delete Button" />
-      </Button>
-      <Button variant="outline-dark" className="noBorder">
-        <img className="deleteButton" src={editIcon} alt="Edit Post Button" />
-      </Button>
+      <DeleteButton onDeleteClick={null} />
+      <EditButton onEditClick={null} />
     </Card.Footer>
   </Card>
 );

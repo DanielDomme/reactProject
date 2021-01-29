@@ -105,6 +105,12 @@ export default class PepperMedical extends Component {
     }));
   }
 
+  handleEntryDelete = (entry) => {
+    const { tableEntries } = this.state;
+    const entries = Array.from(tableEntries).filter(tableEntry => tableEntry.entryId !== entry);
+    this.setState({ tableEntries: entries });
+  }
+
   render() {
     const { tableHeadersMap, tableEntries, shouldModalShow } = this.state;
     return (
@@ -114,6 +120,8 @@ export default class PepperMedical extends Component {
           onEntryClick={this.handleEntryClick}
           tableHeadersMap={tableHeadersMap}
           tableEntries={tableEntries}
+          onEditButtonClick={null}
+          onDeleteButtonClick={this.handleEntryDelete}
         />
         <AddMedicalModal
           shouldMedicalModalShow={shouldModalShow}

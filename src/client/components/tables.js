@@ -4,6 +4,7 @@ import {
   arrayOf, func, instanceOf, number, shape, string
 } from 'prop-types';
 import './componentsStyle/componentStyle.css';
+import { DeleteButton, EditButton } from './buttons';
 
 const reformatTableStringContentsByKey = (key, table) => {
   if (key === 'date') {
@@ -18,7 +19,14 @@ const reformatTableStringContentsByKey = (key, table) => {
   return table[key];
 };
 
-const MedicalTable = ({ sortClickHandler, tableHeadersMap, tableEntries, onEntryClick }) => (
+const MedicalTable = ({
+  sortClickHandler,
+  tableHeadersMap,
+  tableEntries,
+  onEntryClick,
+  onEditButtonClick,
+  onDeleteButtonClick
+}) => (
   <Table responsive striped bordered hover>
     <thead>
       <tr key={tableHeadersMap.length.toString()}>
@@ -37,6 +45,7 @@ const MedicalTable = ({ sortClickHandler, tableHeadersMap, tableEntries, onEntry
               <th className="table-header" onClick={() => sortClickHandler(key)} key={key}>{headerRow[key]}</th>
             </OverlayTrigger>
           ))))}
+        <th>Edit/Delete</th>
       </tr>
     </thead>
     <tbody>
@@ -47,6 +56,12 @@ const MedicalTable = ({ sortClickHandler, tableHeadersMap, tableEntries, onEntry
               {reformatTableStringContentsByKey(keyName, tableRow)}
             </td>
           ))}
+          {
+            <td>
+              <EditButton onEditClick={onEditButtonClick} />
+              <DeleteButton onDeleteClick={() => onDeleteButtonClick(tableRow.entryId)} />
+            </td>
+          }
         </tr>
       ))}
     </tbody>
@@ -72,7 +87,9 @@ MedicalTable.propTypes = {
     cost: number
   })).isRequired,
   sortClickHandler: func.isRequired,
-  onEntryClick: func.isRequired
+  onEntryClick: func.isRequired,
+  onDeleteButtonClick: func.isRequired,
+  onEditButtonClick: func.isRequired
 };
 
 

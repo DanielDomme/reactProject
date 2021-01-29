@@ -27,8 +27,8 @@ body {
 .postButton2 {
   background-image: linear-gradient(to top right, #17a2b8, #17B885);
   padding: 15px;
-  height: 5vmax;
-  width: 5vmax;
+  height: 4vmax;
+  width: 4vmax;
   border-radius: 50%;
   border: none;
   box-shadow: 0 5px 9px 0 lightgrey, 0 7px 22px 0 lightgrey;
@@ -37,7 +37,7 @@ body {
   right: 25px;
   font: bold 80% Roboto, sans-serif;
   text-align: center;
-  font-size: 2vw;
+  font-size: 1.4vw;
   color: aliceblue;
 }
 
@@ -68,14 +68,15 @@ button:hover {
 }
 
 .deleteButton {
-  height: 3vmin;
+  height: 3.5vh;
+
 }
 
 .noBorder {
   border: none;
-  margin: 0;
+  margin: 8% 4px;
   padding: 0;
-  float: right;
+  /*float: right;*/
 }
 
 .modalBodyText {
