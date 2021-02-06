@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Button, Modal } from 'react-bootstrap';
-import { bool, func } from 'prop-types';
+import { bool, func, string } from 'prop-types';
 import { AddMedicalEntryForm } from './forms';
 
 export default class AddMedicalModal extends Component {
@@ -35,10 +35,22 @@ export default class AddMedicalModal extends Component {
     this.setState({ description: event.target.value });
   }
 
+  clearFields = () => {
+    this.setState({
+      entryType: '', date: '', performedBy: '', cost: '', description: ''
+    });
+  }
+
 
   // TODO: ADD error handling for dates and cost
   render() {
-    const { handleCloseModal, shouldMedicalModalShow, handleModalSubmit } = this.props;
+    const {
+      handleCloseModal,
+      shouldMedicalModalShow,
+      handleModalSubmit,
+      submitType,
+      medicalModalTitle
+    } = this.props;
     return (
       <Modal
         onHide={handleCloseModal}
@@ -49,7 +61,7 @@ export default class AddMedicalModal extends Component {
       >
         <Modal.Header closeButton>
           <Modal.Title>
-            Add a New Medical Entry
+            {medicalModalTitle}
           </Modal.Title>
         </Modal.Header>
         <Modal.Body>
@@ -62,8 +74,12 @@ export default class AddMedicalModal extends Component {
           />
         </Modal.Body>
         <Modal.Footer>
-          <Button onClick={() => handleModalSubmit(this.state)}>Post</Button>
-          <Button className="bg-danger" onClick={handleCloseModal}>Close</Button>
+          <Button onClick={() => { handleModalSubmit(this.state); this.clearFields(); }}>
+            {submitType}
+          </Button>
+          <Button className="bg-danger" onClick={() => { handleCloseModal(); this.clearFields(); }}>
+            Cancel
+          </Button>
         </Modal.Footer>
       </Modal>
     );
@@ -73,5 +89,7 @@ export default class AddMedicalModal extends Component {
 AddMedicalModal.propTypes = {
   handleCloseModal: func.isRequired,
   shouldMedicalModalShow: bool.isRequired,
-  handleModalSubmit: func.isRequired
+  handleModalSubmit: func.isRequired,
+  submitType: string.isRequired,
+  medicalModalTitle: string.isRequired
 };

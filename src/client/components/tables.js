@@ -24,7 +24,6 @@ const MedicalTable = ({
   tableHeadersMap,
   tableEntries,
   onEntryClick,
-  onEditButtonClick,
   onDeleteButtonClick
 }) => (
   <Table responsive striped bordered hover>
@@ -58,7 +57,6 @@ const MedicalTable = ({
           ))}
           {
             <td>
-              <EditButton onEditClick={onEditButtonClick} />
               <DeleteButton onDeleteClick={() => onDeleteButtonClick(tableRow.entryId)} />
             </td>
           }
@@ -88,8 +86,7 @@ MedicalTable.propTypes = {
   })).isRequired,
   sortClickHandler: func.isRequired,
   onEntryClick: func.isRequired,
-  onDeleteButtonClick: func.isRequired,
-  onEditButtonClick: func.isRequired
+  onDeleteButtonClick: func.isRequired
 };
 
 

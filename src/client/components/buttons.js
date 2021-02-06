@@ -2,7 +2,12 @@ import React from 'react';
 import { bool, func, string } from 'prop-types';
 import '../app.css';
 import './componentsStyle/componentStyle.css';
-import { Button, Card, OverlayTrigger, Tooltip } from 'react-bootstrap';
+import {
+  Button,
+  Card,
+  OverlayTrigger,
+  Tooltip
+} from 'react-bootstrap';
 import trashCan from '../../resources/trashCan.png';
 import editIcon from '../../resources/betterEditIcon.png';
 
@@ -26,7 +31,12 @@ EditButton.propTypes = {
   onEditClick: func.isRequired
 };
 
-const PostButton = ({ styleName, text, toggleModalVisibility }) => (
+const PostButton = ({
+  styleName,
+  text,
+  toggleModalVisibility,
+  changeModalSubmitAndTitleText
+}) => (
   <OverlayTrigger
     key={text}
     placement="top"
@@ -37,17 +47,19 @@ const PostButton = ({ styleName, text, toggleModalVisibility }) => (
       </Tooltip>
     )}
   >
-    <button type="button" className={styleName} onClick={toggleModalVisibility}>{text}</button>
+    <button type="button" className={styleName} onClick={() => { toggleModalVisibility(); changeModalSubmitAndTitleText('Post', 'Add a New Medical Entry'); }}>{text}</button>
   </OverlayTrigger>
 );
 PostButton.defaultProps = {
   text: '',
+  changeModalSubmitAndTitleText: () => {}
 };
 
 PostButton.propTypes = {
   text: string,
   toggleModalVisibility: func.isRequired,
-  styleName: string.isRequired
+  styleName: string.isRequired,
+  changeModalSubmitAndTitleText: func
 };
 
 const CloseButton = ({ closeButtonHandler }) => (

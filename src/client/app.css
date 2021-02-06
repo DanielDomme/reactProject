@@ -87,7 +87,7 @@ button:hover {
   margin: 5px;
   height: 250px;
   overflow-y: scroll;
-  scrollbar-width: thin;
+  scrollbar-width: thin; /* Firefox */
 }
 .cardScroll::-webkit-scrollbar {
   width: 0;
