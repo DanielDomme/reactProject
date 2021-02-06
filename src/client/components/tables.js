@@ -4,7 +4,7 @@ import {
   arrayOf, func, instanceOf, number, shape, string
 } from 'prop-types';
 import './componentsStyle/componentStyle.css';
-import { DeleteButton, EditButton } from './buttons';
+import { DeleteButton } from './buttons';
 
 const reformatTableStringContentsByKey = (key, table) => {
   if (key === 'date') {
@@ -26,7 +26,7 @@ const MedicalTable = ({
   onEntryClick,
   onDeleteButtonClick
 }) => (
-  <Table responsive striped bordered hover>
+  <Table responsive striped bordered hover role="grid">
     <thead>
       <tr key={tableHeadersMap.length.toString()}>
         {tableHeadersMap.map(headerRow => (
@@ -49,9 +49,9 @@ const MedicalTable = ({
     </thead>
     <tbody>
       {tableEntries.map((tableRow, i) => (
-        <tr key={i.toString()} onClick={() => onEntryClick(tableRow.entryId)}>
+        <tr key={i.toString()}>
           {Object.keys(tableRow).map(keyName => (
-            <td key={keyName}>
+            <td role="gridcell" onClick={() => onEntryClick(tableRow.entryId)} key={keyName}>
               {reformatTableStringContentsByKey(keyName, tableRow)}
             </td>
           ))}

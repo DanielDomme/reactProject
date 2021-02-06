@@ -15,6 +15,7 @@ export default class PepperMedical extends Component {
     isInverted: false,
     modalSubmitType: 'Post',
     medicalModalTitle: 'Add a New Medical Entry',
+    medicalModalEntry: {},
     tableHeadersMap: [
       {
         entryId: 'Entry ID'
@@ -67,6 +68,9 @@ export default class PepperMedical extends Component {
   onSortClickHandler = (item) => {
     const { tableEntries, sortBy, isInverted } = this.state;
     let inverted;
+    if (tableEntries.length === 0) {
+      return;
+    }
     if ((item === sortBy && !isInverted) || (this.isSortedAscending(item))) {
       sortObjectArrayDescendingByAttribute(tableEntries, item);
       inverted = true;
@@ -105,12 +109,15 @@ export default class PepperMedical extends Component {
   }
 
   // TODO: Populate Modal then setstate back
+  // TODO: Broken prefilled form
   handleEntryClickToEdit = (entryIdToFindToEdit) => {
     this.changeModalSubmitButtonAndTitleText('Update', 'Update a Medical Entry');
-    this.toggleModal();
     const { tableEntries } = this.state;
     const entryToEdit = tableEntries.findIndex(entry => entry.entryId === entryIdToFindToEdit);
-    console.log(entryIdToFindToEdit, entryToEdit);
+    console.log(tableEntries[entryToEdit]);
+    this.setState({ medicalModalEntry: tableEntries[entryToEdit] });
+    this.toggleModal();
+    console.log(entryIdToFindToEdit, entryToEdit, this.state.medicalModalEntry);
   }
 
   toggleModal = () => {
@@ -131,7 +138,8 @@ export default class PepperMedical extends Component {
       tableEntries,
       shouldModalShow,
       modalSubmitType,
-      medicalModalTitle
+      medicalModalTitle,
+      medicalModalEntry
     } = this.state;
     return (
       <div className="tableSpacing">
@@ -148,6 +156,7 @@ export default class PepperMedical extends Component {
           handleModalSubmit={this.handleSubmitModal}
           submitType={modalSubmitType}
           medicalModalTitle={medicalModalTitle}
+          tableEntry={medicalModalEntry}
         />
         <PostButton
           styleName="postButton2"

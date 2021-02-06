@@ -1,18 +1,55 @@
 import React, { Component } from 'react';
 import { Button, Modal } from 'react-bootstrap';
-import { bool, func, string } from 'prop-types';
+import { bool, func, instanceOf, number, shape, string } from 'prop-types';
 import { AddMedicalEntryForm } from './forms';
 
 export default class AddMedicalModal extends Component {
   constructor(props) {
     super(props);
-    this.state = {
-      entryType: '',
-      date: '',
-      performedBy: '',
-      cost: '',
-      description: ''
-    };
+    const { tableEntry } = this.props;
+    console.log(tableEntry.entryId === undefined);
+    if (tableEntry.entryId === undefined) {
+      this.state = {
+        entryId: '',
+        entryType: '',
+        date: '',
+        performedBy: '',
+        cost: '',
+        description: ''
+      };
+    } else {
+      this.state = {
+        entryId: tableEntry.entryId.toString(),
+        entryType: tableEntry.entryType,
+        date: tableEntry.date.toString(),
+        performedBy: tableEntry.performedBy,
+        cost: tableEntry.cost.toString(),
+        description: tableEntry.description
+      };
+    }
+  }
+
+  componentWillMount() {
+    const { tableEntry } = this.props;
+    if (tableEntry.entryId === undefined) {
+      this.setState({
+        entryId: '',
+        entryType: '',
+        date: '',
+        performedBy: '',
+        cost: '',
+        description: ''
+      });
+    } else {
+      this.setState({
+        entryId: tableEntry.entryId.toString(),
+        entryType: tableEntry.entryType,
+        date: tableEntry.date.toString(),
+        performedBy: tableEntry.performedBy,
+        cost: tableEntry.cost.toString(),
+        description: tableEntry.description
+      });
+    }
   }
 
   handleEntryTypeInput = (event) => {
@@ -71,6 +108,7 @@ export default class AddMedicalModal extends Component {
             onPerformedByChange={event => this.handlePerformedByInput(event)}
             onCostChange={event => this.handleCostInput(event)}
             onDescriptionChange={event => this.handleDescriptionInput(event)}
+            startingValues={this.state}
           />
         </Modal.Body>
         <Modal.Footer>
@@ -86,10 +124,29 @@ export default class AddMedicalModal extends Component {
   }
 }
 
+AddMedicalModal.defaultProps = {
+  tableEntry: {
+    entryId: null,
+    date: null,
+    title: '',
+    description: '',
+    performedBy: '',
+    cost: null
+  }
+};
+
 AddMedicalModal.propTypes = {
   handleCloseModal: func.isRequired,
   shouldMedicalModalShow: bool.isRequired,
   handleModalSubmit: func.isRequired,
   submitType: string.isRequired,
-  medicalModalTitle: string.isRequired
+  medicalModalTitle: string.isRequired,
+  tableEntry: shape({
+    entryId: number,
+    date: instanceOf(Date),
+    title: string,
+    description: string,
+    performedBy: string,
+    cost: number
+  })
 };

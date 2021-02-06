@@ -1,6 +1,6 @@
 import React from 'react';
 import { Col, Form, Row } from 'react-bootstrap';
-import { func } from 'prop-types';
+import { func, shape, string } from 'prop-types';
 import * as PropTypes from 'prop-types';
 
 const WoodProjectForm = ({ onTitleChange, onBodyChange, onPicLocationChange }) => (
@@ -36,7 +36,12 @@ AddImageToGalleryForm.propTypes = {
 };
 
 const AddMedicalEntryForm = ({
-  onEntryTypeChange, onDateChange, onPerformedByChange, onCostChange, onDescriptionChange
+  onEntryTypeChange,
+  onDateChange,
+  onPerformedByChange,
+  onCostChange,
+  onDescriptionChange,
+  startingValues
 }) => (
   <Form>
     <Row>
@@ -52,10 +57,11 @@ const AddMedicalEntryForm = ({
           <option>Weight</option>
           <option>Add Option</option>
         </Form.Control>
+        {console.log(startingValues.description)}
       </Col>
       <Col>
-        <Form.Label>Date</Form.Label>
-        <Form.Control placeholder="MM/DD/YYYY" onChange={onDateChange} />
+        <Form.Label>Date (MM/DD/YYYY)</Form.Label>
+        <Form.Control placeholder={startingValues.date} onChange={onDateChange} />
       </Col>
     </Row>
     <Row>
@@ -78,7 +84,15 @@ AddMedicalEntryForm.propTypes = {
   onDateChange: func.isRequired,
   onPerformedByChange: func.isRequired,
   onCostChange: func.isRequired,
-  onDescriptionChange: func.isRequired
+  onDescriptionChange: func.isRequired,
+  startingValues: shape({
+    entryId: string,
+    date: string,
+    title: string,
+    description: string,
+    performedBy: string,
+    cost: string
+  }).isRequired
 };
 
 export { WoodProjectForm, AddImageToGalleryForm, AddMedicalEntryForm };
