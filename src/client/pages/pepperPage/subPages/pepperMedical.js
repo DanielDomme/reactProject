@@ -86,6 +86,7 @@ export default class PepperMedical extends Component {
   }
 
   // TODO: Validate Dates, required fields, and monies
+  // TODO: Set State is behind? Move form into modal until figured out for updating values as typed
   handleSubmitModal = (medicalEntry) => {
     const newMedicalEntry = {
       entryId: Date.now(),
@@ -115,9 +116,9 @@ export default class PepperMedical extends Component {
     const { tableEntries } = this.state;
     const entryToEdit = tableEntries.findIndex(entry => entry.entryId === entryIdToFindToEdit);
     console.log(tableEntries[entryToEdit]);
-    this.setState({ medicalModalEntry: tableEntries[entryToEdit] });
+    this.setState(prevState => ({ medicalModalEntry: { ...prevState.medicalModalEntry, ...tableEntries[entryToEdit] } }));
     this.toggleModal();
-    console.log(entryIdToFindToEdit, entryToEdit, this.state.medicalModalEntry);
+    console.log('never here', entryIdToFindToEdit, entryToEdit, this.state.medicalModalEntry);
   }
 
   toggleModal = () => {

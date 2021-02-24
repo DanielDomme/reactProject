@@ -7,7 +7,7 @@ export default class AddMedicalModal extends Component {
   constructor(props) {
     super(props);
     const { tableEntry } = this.props;
-    console.log(tableEntry.entryId === undefined);
+    console.log(`I forgot where I left off ${tableEntry.entryId === undefined}`);
     if (tableEntry.entryId === undefined) {
       this.state = {
         entryId: '',
@@ -29,28 +29,29 @@ export default class AddMedicalModal extends Component {
     }
   }
 
-  componentWillMount() {
-    const { tableEntry } = this.props;
-    if (tableEntry.entryId === undefined) {
-      this.setState({
-        entryId: '',
-        entryType: '',
-        date: '',
-        performedBy: '',
-        cost: '',
-        description: ''
-      });
-    } else {
-      this.setState({
-        entryId: tableEntry.entryId.toString(),
-        entryType: tableEntry.entryType,
-        date: tableEntry.date.toString(),
-        performedBy: tableEntry.performedBy,
-        cost: tableEntry.cost.toString(),
-        description: tableEntry.description
-      });
-    }
-  }
+  // componentWillMount() {
+  //   const { tableEntry } = this.props;
+  //   console.log(`I forgot where I left off2. Oh, the dupes! ${tableEntry.entryId === undefined}`);
+  //   if (tableEntry.entryId === undefined) {
+  //     this.setState({
+  //       entryId: '',
+  //       entryType: '',
+  //       date: '',
+  //       performedBy: '',
+  //       cost: '',
+  //       description: ''
+  //     });
+  //   } else {
+  //     this.setState({
+  //       entryId: tableEntry.entryId.toString(),
+  //       entryType: tableEntry.entryType,
+  //       date: tableEntry.date.toString(),
+  //       performedBy: tableEntry.performedBy,
+  //       cost: tableEntry.cost.toString(),
+  //       description: tableEntry.description
+  //     });
+  //   }
+  // }
 
   handleEntryTypeInput = (event) => {
     this.setState({ entryType: event.target.value });

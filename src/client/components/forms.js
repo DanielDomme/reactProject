@@ -57,11 +57,11 @@ const AddMedicalEntryForm = ({
           <option>Weight</option>
           <option>Add Option</option>
         </Form.Control>
-        {console.log(startingValues.description)}
+        {console.log('In Form (maybe consider using debugger, dude)', startingValues.description)}
       </Col>
       <Col>
         <Form.Label>Date (MM/DD/YYYY)</Form.Label>
-        <Form.Control placeholder={startingValues.date} onChange={onDateChange} />
+        <Form.Control placeholder="Date" onChange={onDateChange} />
       </Col>
     </Row>
     <Row>
