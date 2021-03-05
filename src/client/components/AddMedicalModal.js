@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
-import { Button, Modal } from 'react-bootstrap';
-import { bool, func, instanceOf, number, shape, string } from 'prop-types';
+import { Button, Col, Form, Modal, Row } from 'react-bootstrap';
+import {
+  bool, func, instanceOf, number, shape, string
+} from 'prop-types';
 import { AddMedicalEntryForm } from './forms';
 
 export default class AddMedicalModal extends Component {
@@ -27,7 +29,24 @@ export default class AddMedicalModal extends Component {
         description: tableEntry.description
       };
     }
+    // this.state = {
+    //   entryId: '',
+    //   entryType: '',
+    //   date: '',
+    //   performedBy: '',
+    //   cost: '',
+    //   description: ''
+    // };
   }
+
+  // state = {
+  //   entryId: '',
+  //   entryType: '',
+  //   date: '',
+  //   performedBy: '',
+  //   cost: '',
+  //   description: ''
+  // };
 
   // componentWillMount() {
   //   const { tableEntry } = this.props;
@@ -89,6 +108,10 @@ export default class AddMedicalModal extends Component {
       submitType,
       medicalModalTitle
     } = this.props;
+    const {
+      cost,
+      description
+    } = this.state;
     return (
       <Modal
         onHide={handleCloseModal}
@@ -103,14 +126,48 @@ export default class AddMedicalModal extends Component {
           </Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          <AddMedicalEntryForm
-            onEntryTypeChange={event => this.handleEntryTypeInput(event)}
-            onDateChange={event => this.handleDateInput(event)}
-            onPerformedByChange={event => this.handlePerformedByInput(event)}
-            onCostChange={event => this.handleCostInput(event)}
-            onDescriptionChange={event => this.handleDescriptionInput(event)}
-            startingValues={this.state}
-          />
+          {/* <AddMedicalEntryForm */}
+          {/*  onEntryTypeChange={event => this.handleEntryTypeInput(event)} */}
+          {/*  onDateChange={event => this.handleDateInput(event)} */}
+          {/*  onPerformedByChange={event => this.handlePerformedByInput(event)} */}
+          {/*  onCostChange={event => this.handleCostInput(event)} */}
+          {/*  onDescriptionChange={event => this.handleDescriptionInput(event)} */}
+          {/*  startingValues={this.state} */}
+          {/* /> */}
+          <Form>
+            <Row>
+              <Col>
+                <Form.Label>Entry Type</Form.Label>
+                <Form.Control as="select" onChange={this.handleEntryTypeInput} value={this.props.tableEntry.title}>
+                  {/* TODO: refactor options and make customizable */}
+                  <option />
+                  <option>Surgery</option>
+                  <option>Grooming</option>
+                  <option>Medication</option>
+                  <option>{'Doctor\'s Visit'}</option>
+                  <option>Weight</option>
+                  <option>Add Option</option>
+                </Form.Control>
+                {console.log('In Form (maybe consider using debugger, dude)', cost)}
+              </Col>
+              <Col>
+                <Form.Label>Date (MM/DD/YYYY)</Form.Label>
+                <Form.Control placeholder="Date" onChange={this.handleDateInput} value={this.props.tableEntry.date} />
+              </Col>
+            </Row>
+            <Row>
+              <Col>
+                <Form.Label>Performed By</Form.Label>
+                <Form.Control placeholder="Performed By" onChange={this.handlePerformedByInput} value={this.props.tableEntry.performedBy} />
+              </Col>
+              <Col>
+                <Form.Label>Cost</Form.Label>
+                <Form.Control placeholder="Cost" onChange={this.handleCostInput} value={this.props.tableEntry.cost} />
+              </Col>
+            </Row>
+            <Form.Label>Description</Form.Label>
+            <Form.Control as="textarea" placeholder="Description..." onChange={this.handleDescriptionInput} value={this.props.tableEntry.description} />
+          </Form>
         </Modal.Body>
         <Modal.Footer>
           <Button onClick={() => { handleModalSubmit(this.state); this.clearFields(); }}>

@@ -15,7 +15,9 @@ export default class PepperMedical extends Component {
     isInverted: false,
     modalSubmitType: 'Post',
     medicalModalTitle: 'Add a New Medical Entry',
-    medicalModalEntry: {},
+    medicalModalEntry: {
+      entryId: undefined, date: new Date('1/10/98'), type: 'Surgery', description: 'Took pepper in to get spayed.', performedBy: 'Dr. Kaitlyn', cost: undefined
+    },
     tableHeadersMap: [
       {
         entryId: 'Entry ID'
@@ -113,12 +115,13 @@ export default class PepperMedical extends Component {
   // TODO: Broken prefilled form
   handleEntryClickToEdit = (entryIdToFindToEdit) => {
     this.changeModalSubmitButtonAndTitleText('Update', 'Update a Medical Entry');
-    const { tableEntries } = this.state;
+    const { tableEntries, medicalModalEntry } = this.state;
     const entryToEdit = tableEntries.findIndex(entry => entry.entryId === entryIdToFindToEdit);
-    console.log(tableEntries[entryToEdit]);
-    this.setState(prevState => ({ medicalModalEntry: { ...prevState.medicalModalEntry, ...tableEntries[entryToEdit] } }));
+    console.log(tableEntries[entryToEdit], 'entry clicked');
+    this.setState(prevState => (
+      { medicalModalEntry: { ...prevState.medicalModalEntry, ...tableEntries[entryToEdit] } }));
     this.toggleModal();
-    console.log('never here', entryIdToFindToEdit, entryToEdit, this.state.medicalModalEntry);
+    console.log('never here', entryIdToFindToEdit, entryToEdit, medicalModalEntry);
   }
 
   toggleModal = () => {
@@ -151,14 +154,16 @@ export default class PepperMedical extends Component {
           tableEntries={tableEntries}
           onDeleteButtonClick={this.handleEntryDelete}
         />
-        <AddMedicalModal
-          shouldMedicalModalShow={shouldModalShow}
-          handleCloseModal={() => this.toggleModal()}
-          handleModalSubmit={this.handleSubmitModal}
-          submitType={modalSubmitType}
-          medicalModalTitle={medicalModalTitle}
-          tableEntry={medicalModalEntry}
-        />
+        {shouldModalShow ? (
+          <AddMedicalModal
+            shouldMedicalModalShow={shouldModalShow}
+            handleCloseModal={() => this.toggleModal()}
+            handleModalSubmit={this.handleSubmitModal}
+            submitType={modalSubmitType}
+            medicalModalTitle={medicalModalTitle}
+            tableEntry={medicalModalEntry}
+          />
+        ) : null}
         <PostButton
           styleName="postButton2"
           toggleModalVisibility={this.toggleModal}
