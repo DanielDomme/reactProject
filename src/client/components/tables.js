@@ -16,6 +16,9 @@ const reformatTableStringContentsByKey = (key, table) => {
   if (key === 'cost') {
     return `$${table[key]}`;
   }
+  if (table[key] === undefined) {
+    return '';
+  }
   return table[key];
 };
 
@@ -50,10 +53,12 @@ const MedicalTable = ({
     <tbody>
       {tableEntries.map((tableRow, i) => (
         <tr key={i.toString()}>
-          {Object.keys(tableRow).map(keyName => (
-            <td role="gridcell" onClick={() => onEntryClick(tableRow.entryId)} key={keyName}>
-              {reformatTableStringContentsByKey(keyName, tableRow)}
-            </td>
+          {tableHeadersMap.map(headerRow => (
+            Object.keys(headerRow).map(keyName => (
+              <td role="gridcell" onClick={() => onEntryClick(tableRow.entryId)} key={keyName}>
+                {reformatTableStringContentsByKey(keyName, tableRow)}
+              </td>
+            ))
           ))}
           {
             <td>

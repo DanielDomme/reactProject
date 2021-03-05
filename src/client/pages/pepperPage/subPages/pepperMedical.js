@@ -88,19 +88,35 @@ export default class PepperMedical extends Component {
   }
 
   // TODO: Validate Dates, required fields, and monies
-  // TODO: Set State is behind? Move form into modal until figured out for updating values as typed
   handleSubmitModal = (medicalEntry) => {
+    const { tableEntries } = this.state;
+    const tableEntriesCopy = tableEntries.slice();
+    const entryArrayIndex = this.getArrIndexByEntryIdToEdit(
+      tableEntriesCopy,
+      medicalEntry.entryId
+    );
     const newMedicalEntry = {
-      entryId: Date.now(),
+      entryId: entryArrayIndex === -1
+        ? Date.now()
+        : medicalEntry.entryId,
       date: new Date(medicalEntry.date),
-      type: medicalEntry.entryType,
+      type: medicalEntry.type,
       description: medicalEntry.description,
       performedBy: medicalEntry.performedBy,
       cost: Number(medicalEntry.cost)
     };
-    this.setState(prevState => ({
-      tableEntries: [...prevState.tableEntries, newMedicalEntry]
-    }));
+    if (entryArrayIndex === -1) {
+      this.setState(prevState => ({
+        tableEntries: [...prevState.tableEntries, newMedicalEntry]
+      }));
+    } else {
+      tableEntriesCopy[entryArrayIndex] = newMedicalEntry;
+      this.setState({
+        tableEntries: tableEntriesCopy
+      });
+    }
+    this.setState(prevState => (
+      { medicalModalEntry: { ...prevState.medicalModalEntry, entryId: undefined } }));
     this.toggleModal();
   }
 
@@ -111,17 +127,19 @@ export default class PepperMedical extends Component {
     });
   }
 
-  // TODO: Populate Modal then setstate back
-  // TODO: Broken prefilled form
   handleEntryClickToEdit = (entryIdToFindToEdit) => {
     this.changeModalSubmitButtonAndTitleText('Update', 'Update a Medical Entry');
     const { tableEntries, medicalModalEntry } = this.state;
-    const entryToEdit = tableEntries.findIndex(entry => entry.entryId === entryIdToFindToEdit);
-    console.log(tableEntries[entryToEdit], 'entry clicked');
+    const entryToEdit = this.getArrIndexByEntryIdToEdit(tableEntries.slice(), entryIdToFindToEdit);
+    console.log(tableEntries[entryToEdit], 'entry clicked', 'doesnt exist', this.getArrIndexByEntryIdToEdit(tableEntries, 1));
     this.setState(prevState => (
       { medicalModalEntry: { ...prevState.medicalModalEntry, ...tableEntries[entryToEdit] } }));
     this.toggleModal();
     console.log('never here', entryIdToFindToEdit, entryToEdit, medicalModalEntry);
+  }
+
+  getArrIndexByEntryIdToEdit = (tableEntries, entryIdToFindToEdit) => {
+    return tableEntries.findIndex(entry => entry.entryId === entryIdToFindToEdit);
   }
 
   toggleModal = () => {
