@@ -138,8 +138,13 @@ export default class PepperMedical extends Component {
     console.log('never here', entryIdToFindToEdit, entryToEdit, medicalModalEntry);
   }
 
-  getArrIndexByEntryIdToEdit = (tableEntries, entryIdToFindToEdit) => {
-    return tableEntries.findIndex(entry => entry.entryId === entryIdToFindToEdit);
+  // eslint-disable-next-line max-len
+  getArrIndexByEntryIdToEdit = (tableEntries, entryIdToFindToEdit) => tableEntries.findIndex(entry => entry.entryId === entryIdToFindToEdit)
+
+  handleCancelClickModal = () => {
+    this.setState(prevState => (
+      { medicalModalEntry: { ...prevState.medicalModalEntry, entryId: undefined } }));
+    this.toggleModal();
   }
 
   toggleModal = () => {
@@ -175,7 +180,7 @@ export default class PepperMedical extends Component {
         {shouldModalShow ? (
           <AddMedicalModal
             shouldMedicalModalShow={shouldModalShow}
-            handleCloseModal={() => this.toggleModal()}
+            handleCloseModal={() => this.handleCancelClickModal()}
             handleModalSubmit={this.handleSubmitModal}
             submitType={modalSubmitType}
             medicalModalTitle={medicalModalTitle}

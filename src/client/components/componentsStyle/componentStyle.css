@@ -66,3 +66,8 @@
     background-color: #f3c66d;
     cursor: pointer;
 }
+
+.form-warning {
+    font-size: x-small;
+    color: red;
+}

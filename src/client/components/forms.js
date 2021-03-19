@@ -1,6 +1,6 @@
 import React from 'react';
 import { Col, Form, Row } from 'react-bootstrap';
-import { func, shape, string } from 'prop-types';
+import { func, } from 'prop-types';
 import * as PropTypes from 'prop-types';
 
 const WoodProjectForm = ({ onTitleChange, onBodyChange, onPicLocationChange }) => (
@@ -35,64 +35,80 @@ AddImageToGalleryForm.propTypes = {
   handleSelectedImage: func.isRequired
 };
 
+
 const AddMedicalEntryForm = ({
-  onEntryTypeChange,
-  onDateChange,
-  onPerformedByChange,
-  onCostChange,
-  onDescriptionChange,
-  startingValues
+  type,
+  date,
+  performedBy,
+  cost,
+  description,
+  isDate,
+  isCostValid,
+  handleEntryTypeInput,
+  handleDateInput,
+  handlePerformedByInput,
+  handleCostInput,
+  handleDescriptionInput
 }) => (
   <Form>
     <Row>
       <Col>
         <Form.Label>Entry Type</Form.Label>
-        <Form.Control as="select" onChange={onEntryTypeChange}>
+        <Form.Control as="select" value={type} onChange={handleEntryTypeInput}>
           {/* TODO: refactor options and make customizable */}
-          <option />
-          <option>Surgery</option>
-          <option>Grooming</option>
-          <option>Medication</option>
-          <option>{'Doctor\'s Visit'}</option>
-          <option>Weight</option>
-          <option>Add Option</option>
+          <option disabled />
+          <option value="Surgery">Surgery</option>
+          <option value="Grooming">Grooming</option>
+          <option value="Medication">Medication</option>
+          <option value="Doctor's Visit">{'Doctor\'s Visit'}</option>
+          <option value="Weight">Weight</option>
+          <option value="Add Option">Add Option</option>
         </Form.Control>
-        {console.log('In Form (maybe consider using debugger, dude)', startingValues.description)}
       </Col>
       <Col>
         <Form.Label>Date (MM/DD/YYYY)</Form.Label>
-        <Form.Control placeholder="Date" onChange={onDateChange} />
+        {isDate ? null
+          : <Form.Text className="form-warning">* Date Must Be a Real Date</Form.Text>}
+        <Form.Control placeholder="Date" onChange={handleDateInput} value={date} />
       </Col>
     </Row>
     <Row>
       <Col>
         <Form.Label>Performed By</Form.Label>
-        <Form.Control placeholder="Performed By" onChange={onPerformedByChange} />
+        <Form.Control placeholder="Performed By" onChange={handlePerformedByInput} value={performedBy} />
       </Col>
       <Col>
         <Form.Label>Cost</Form.Label>
-        <Form.Control placeholder="Cost" onChange={onCostChange} />
+        {isCostValid ? null
+          : <Form.Text className="form-warning">* Cost Should Be A Number</Form.Text>}
+        <Form.Control placeholder="Cost" onChange={handleCostInput} value={cost} />
       </Col>
     </Row>
     <Form.Label>Description</Form.Label>
-    <Form.Control as="textarea" placeholder="Description..." onChange={onDescriptionChange} />
+    <Form.Control
+      as="textarea"
+      placeholder="Description..."
+      onChange={handleDescriptionInput}
+      value={description}
+    />
   </Form>
 );
 
 AddMedicalEntryForm.propTypes = {
-  onEntryTypeChange: func.isRequired,
-  onDateChange: func.isRequired,
-  onPerformedByChange: func.isRequired,
-  onCostChange: func.isRequired,
-  onDescriptionChange: func.isRequired,
-  startingValues: shape({
-    entryId: string,
-    date: string,
-    title: string,
-    description: string,
-    performedBy: string,
-    cost: string
-  }).isRequired
+  type: PropTypes.string.isRequired,
+  handleEntryTypeInput: PropTypes.func.isRequired,
+  date: PropTypes.string.isRequired,
+  handleDateInput: PropTypes.func.isRequired,
+  cost: PropTypes.string.isRequired,
+  handleCostInput: PropTypes.func.isRequired,
+  description: PropTypes.string.isRequired,
+  handleDescriptionInput: PropTypes.func.isRequired,
+  performedBy: PropTypes.string.isRequired,
+  handlePerformedByInput: PropTypes.func.isRequired,
+  isDate: PropTypes.bool.isRequired,
+  isCostValid: PropTypes.bool.isRequired,
 };
 
-export { WoodProjectForm, AddImageToGalleryForm, AddMedicalEntryForm };
+export {
+  WoodProjectForm, AddImageToGalleryForm, AddMedicalEntryForm
+};

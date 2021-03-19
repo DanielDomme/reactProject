@@ -82,4 +82,3 @@ WoodworkingPostModal.propTypes = {
   handleModalCancel: func.isRequired,
   handleModalSubmit: func.isRequired
 };
-// export default WoodworkingPostModal;

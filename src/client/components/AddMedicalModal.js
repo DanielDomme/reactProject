@@ -1,12 +1,15 @@
 import React, { Component } from 'react';
 import {
-  Button, Col, Form, Modal, Row
+  Button, Modal,
 } from 'react-bootstrap';
 import {
   bool, func, instanceOf, number, shape, string
 } from 'prop-types';
-import fullStringDateToShortDate from '../../utils/DateUtils';
+import { fullStringDateToShortDate, isDateValid } from '../../utils/DateUtils';
+import isRealNumber from '../../utils/NumberUtils';
 import { AddMedicalEntryForm } from './forms';
+import './componentsStyle/componentStyle.css';
+
 
 export default class AddMedicalModal extends Component {
   constructor(props) {
@@ -19,7 +22,9 @@ export default class AddMedicalModal extends Component {
         date: '',
         performedBy: '',
         cost: '',
-        description: ''
+        description: '',
+        isDate: true,
+        isCostValid: true,
       };
     } else {
       this.state = {
@@ -28,7 +33,9 @@ export default class AddMedicalModal extends Component {
         date: fullStringDateToShortDate(tableEntry.date.toString()),
         performedBy: tableEntry.performedBy,
         cost: tableEntry.cost.toString(),
-        description: tableEntry.description
+        description: tableEntry.description,
+        isDate: true,
+        isCostValid: true,
       };
     }
   }
@@ -52,11 +59,24 @@ export default class AddMedicalModal extends Component {
   handleDescriptionInput = (event) => {
     this.setState({ description: event.target.value });
   }
+  // TODO: Possibly not needed, clearing handled by parent
+  // clearFields = () => {
+  //   const { date } = this.state;
+  //
+  //   if (isDateValid(date)) {
+  //     this.setState({
+  //       type: '',
+  //       date: '',
+  //       performedBy: '',
+  //       cost: '',
+  //       description: ''
+  //     });
+  //   }
+  // }
 
-  clearFields = () => {
-    this.setState({
-      type: '', date: '', performedBy: '', cost: '', description: ''
-    });
+  validateDateAndCost = () => {
+    const { date, cost } = this.state;
+    this.setState({ isDate: isDateValid(date), isCostValid: isRealNumber(cost) });
   }
 
   prepDataForSubmission = () => {
@@ -66,18 +86,20 @@ export default class AddMedicalModal extends Component {
     const {
       handleModalSubmit
     } = this.props;
-    handleModalSubmit({
-      entryId: Number(entryId),
-      type,
-      date: new Date(date),
-      performedBy,
-      cost: Number(cost),
-      description
-    });
+    this.validateDateAndCost();
+    if (isDateValid(date) && isRealNumber(cost)) {
+      handleModalSubmit({
+        entryId: Number(entryId),
+        type,
+        date: new Date(date),
+        performedBy,
+        cost: Number(cost),
+        description
+      });
+    }
   }
 
   // TODO: Refactor form out of modal
-  // TODO: ADD error handling for dates and cost
   render() {
     const {
       handleCloseModal,
@@ -90,7 +112,9 @@ export default class AddMedicalModal extends Component {
       date,
       performedBy,
       cost,
-      description
+      description,
+      isDate,
+      isCostValid,
     } = this.state;
     return (
       <Modal
@@ -106,53 +130,26 @@ export default class AddMedicalModal extends Component {
           </Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          {/* <AddMedicalEntryForm */}
-          {/*  onEntryTypeChange={event => this.handleEntryTypeInput(event)} */}
-          {/*  onDateChange={event => this.handleDateInput(event)} */}
-          {/*  onPerformedByChange={event => this.handlePerformedByInput(event)} */}
-          {/*  onCostChange={event => this.handleCostInput(event)} */}
-          {/*  onDescriptionChange={event => this.handleDescriptionInput(event)} */}
-          {/*  startingValues={this.state} */}
-          {/* /> */}
-          <Form>
-            <Row>
-              <Col>
-                <Form.Label>Entry Type</Form.Label>
-                <Form.Control as="select" value={type} onChange={this.handleEntryTypeInput}>
-                  {/* TODO: refactor options and make customizable */}
-                  <option disabled />
-                  <option value="Surgery">Surgery</option>
-                  <option value="Grooming">Grooming</option>
-                  <option value="Medication">Medication</option>
-                  <option value="Doctor's Visit">{'Doctor\'s Visit'}</option>
-                  <option value="Weight">Weight</option>
-                  <option value="Add Option">Add Option</option>
-                </Form.Control>
-              </Col>
-              <Col>
-                <Form.Label>Date (MM/DD/YYYY)</Form.Label>
-                <Form.Control placeholder="Date" onChange={this.handleDateInput} value={date} />
-              </Col>
-            </Row>
-            <Row>
-              <Col>
-                <Form.Label>Performed By</Form.Label>
-                <Form.Control placeholder="Performed By" onChange={this.handlePerformedByInput} value={performedBy} />
-              </Col>
-              <Col>
-                <Form.Label>Cost</Form.Label>
-                <Form.Control placeholder="Cost" onChange={this.handleCostInput} value={cost} />
-              </Col>
-            </Row>
-            <Form.Label>Description</Form.Label>
-            <Form.Control as="textarea" placeholder="Description..." onChange={this.handleDescriptionInput} value={description} />
-          </Form>
+          <AddMedicalEntryForm
+            type={type}
+            handleEntryTypeInput={this.handleEntryTypeInput}
+            isDate={isDate}
+            handleDateInput={this.handleDateInput}
+            date={date}
+            handlePerformedByInput={this.handlePerformedByInput}
+            performedBy={performedBy}
+            isCostValid={isCostValid}
+            handleCostInput={this.handleCostInput}
+            cost={cost}
+            handleDescriptionInput={this.handleDescriptionInput}
+            description={description}
+          />
         </Modal.Body>
         <Modal.Footer>
-          <Button onClick={() => { this.prepDataForSubmission(); this.clearFields(); }}>
+          <Button onClick={() => { this.prepDataForSubmission(); }}>
             {submitType}
           </Button>
-          <Button className="bg-danger" onClick={() => { handleCloseModal(); this.clearFields(); }}>
+          <Button className="bg-danger" onClick={() => { handleCloseModal(); }}>
             Cancel
           </Button>
         </Modal.Footer>
