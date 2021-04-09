@@ -94,5 +94,89 @@ MedicalTable.propTypes = {
   onDeleteButtonClick: func.isRequired
 };
 
+const YarnTable = ({
+  sortClickHandler,
+  tableHeadersMap,
+  tableEntries,
+  onEntryClick,
+  onDeleteButtonClick
+}) => (
+  <Table responsive striped bordered hover role="grid">
+    <thead>
+      <tr key={tableHeadersMap.length.toString()}>
+        {tableHeadersMap.map(headerRow => (
+          Object.keys(headerRow).map(key => (
+            <OverlayTrigger
+              key={key}
+              placement="top"
+              delay={{ show: 250 }}
+              overlay={(
+                <Tooltip style={{ opacity: 0.4, fontSize: 10 }} id={key}>
+                  Click to Sort
+                </Tooltip>
+            )}
+            >
+              <th className="table-header" onClick={() => sortClickHandler(key)} key={key}>{headerRow[key]}</th>
+            </OverlayTrigger>
+          ))))}
+        <th>Edit/Delete</th>
+      </tr>
+    </thead>
+    <tbody>
+      {tableEntries.map((tableRow, i) => (
+        <tr key={i.toString()}>
+          {tableHeadersMap.map(headerRow => (
+            Object.keys(headerRow).map(keyName => (
+              <td role="gridcell" onClick={() => onEntryClick(tableRow.entryId)} key={keyName}>
+                {reformatTableStringContentsByKey(keyName, tableRow)}
+              </td>
+            ))
+          ))}
+          {
+            <td>
+              <DeleteButton onDeleteClick={() => onDeleteButtonClick(tableRow.entryId)} />
+            </td>
+        }
+        </tr>
+      ))}
+    </tbody>
+  </Table>
+);
 
-export default MedicalTable;
+
+YarnTable.propTypes = {
+  tableHeadersMap: arrayOf(shape({
+    entryId: string,
+    pictureLocation: string,
+    date: string,
+    brand: string,
+    notes: string,
+    yarnWeight: string,
+    color: string,
+    material: string,
+    skeinCount: string,
+    lotNumber: string,
+    amountRemaining: string,
+    cost: string,
+  })).isRequired,
+  tableEntries: arrayOf(shape({
+    entryId: number,
+    pictureLocation: string,
+    date: instanceOf(Date),
+    brand: string,
+    notes: string,
+    yarnWeight: string,
+    color: string,
+    material: string,
+    skeinCount: number,
+    lotNumber: string,
+    amountRemaining: number,
+    cost: number,
+  })).isRequired,
+  sortClickHandler: func.isRequired,
+  onEntryClick: func.isRequired,
+  onDeleteButtonClick: func.isRequired
+};
+
+
+export { MedicalTable, YarnTable };

@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { func } from 'prop-types';
 import { Container } from 'react-bootstrap';
-import Gallery from '../components/gallery';
+import ProjectCard, { Gallery } from '../components/gallery';
 import { PostButton } from '../components/buttons';
 import WoodworkingPostModal from '../components/woodworkingModal';
 import '../app.css';
@@ -82,15 +82,7 @@ export default class Woodworking extends Component {
   render() {
     const { userImages, isModalShowing } = this.state;
     // TODO: break out to gallery, then move gallery contents to cards
-    const imageCardArray = userImages.map((item, i) => (
-      <div key={i.toString()} className="d-lg-inline-block woodWorkingPostCards">
-        <Gallery
-          title={item.postTitle}
-          imageLocation={item.imageLocation}
-          body={item.bodyContent}
-        />
-      </div>
-    ));
+
     return (
       <Container>
         <div><h1>Woodworking Projects</h1></div>
@@ -99,7 +91,8 @@ export default class Woodworking extends Component {
           handleModalCancel={this.handleModalClose}
           handleModalSubmit={this.handleModalPost}
         />
-        {imageCardArray}
+        {/*{imageCardArray}*/}
+        <Gallery galleryArray={userImages} />
         <PostButton styleName="postButton" text="Add Post" toggleModalVisibility={this.toggleModal} />
       </Container>
     );
